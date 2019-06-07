@@ -31,11 +31,12 @@ namespace projektTest
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "SERVER=" + server + ";DATABASE=" + database + ";UID=" + user + ";PASSWORD=" + password + ";";
+            SqlConnection connection;
+            string connectionString = "Data Source=projektbazy.database.windows.net;Initial Catalog=BazaDziennik;User ID=projektbazy;Password=********;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             connection = new SqlConnection(connectionString);
             connection.Open();
 
-            SqlCommand polecenie = new SqlCommand("SELECT * FROM testowanko", connection);
+            SqlCommand polecenie = new SqlCommand("SELECT * FROM dziennik", connection);
             SqlDataReader czytnik = polecenie.ExecuteReader();
 
             string temp = "";
