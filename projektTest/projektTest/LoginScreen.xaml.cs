@@ -37,6 +37,7 @@ namespace projektTest
         {
             string connectionString = "SERVER=" + server + ";DATABASE=" + database + ";UID=" + user + ";PASSWORD=" + password + ";";
             connection = new SqlConnection(connectionString);
+            connection.Open();
 
             SqlCommand polecenie = new SqlCommand("SELECT * FROM testowanko", connection);
             SqlDataReader czytnik = polecenie.ExecuteReader();
