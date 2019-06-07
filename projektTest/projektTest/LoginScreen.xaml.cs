@@ -35,12 +35,14 @@ namespace projektTest
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "SERVER=" + server + ";DATABASE=" + database + ";UID=" + user + ";PASSWORD=" + password + ";";
+            string connectionString = @"Data Source=mysql1.ugu.pl;Database=db696467;User Id=db696467;Password=zaq1@WSX;";
             connection = new SqlConnection(connectionString);
             connection.Open();
+            
 
             SqlCommand polecenie = new SqlCommand("SELECT * FROM testowanko", connection);
             SqlDataReader czytnik = polecenie.ExecuteReader();
+            
 
             string temp = "";
             while (czytnik.Read())
@@ -49,12 +51,9 @@ namespace projektTest
             }
 
             czytnik.Close();
+            connection.Close();
             MessageBox.Show(temp);
-        }
 
-        private void BtnTest_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }
