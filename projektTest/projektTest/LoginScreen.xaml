@@ -15,5 +15,6 @@
         <Label Content="Password" Foreground="White" HorizontalAlignment="Center"/>
         <TextBox Name="txtPass" Background="#2F4F4F" FontSize="16" Foreground="White"/>
         <Button Name="btnSubmit" Content="Submit" Margin="70 10"   Background="#2F4F4F" FontSize="16" Foreground="White"/>
+        <Button Content="Show nudes"/>
     </StackPanel>
 </Window>
