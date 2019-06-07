@@ -71,6 +71,7 @@ namespace projektTest
             }
             else
             {
+                if (login == "jerzy" && password == "barglik") btnLogin.Content = "Wypij zdrowie!";
                 MessageBox.Show("Podano niepoprawne dane logowania!");
             }
 
