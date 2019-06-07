@@ -32,7 +32,7 @@ namespace projektTest
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection connection;
-            string connectionString = "Data Source=projektbazy.database.windows.net;Initial Catalog=BazaDziennik;User ID=projektbazy;Password=********;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = "Data Source=projektbazy.database.windows.net;Initial Catalog=BazaDziennik;User ID=projektbazy;Password=zaq1@WSX;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             connection = new SqlConnection(connectionString);
             connection.Open();
 
@@ -42,16 +42,16 @@ namespace projektTest
             string temp = "";
             while (czytnik.Read())
             {
+                temp += "Login: "+czytnik["Logowanie"].ToString() + "\t";
+                temp += "Hasło: "+czytnik["Haslo"].ToString() + "\t";
                 temp += czytnik["Test"].ToString() + "\n";
             }
 
             czytnik.Close();
             MessageBox.Show(temp);
-        }
 
-        private void BtnTest_Click(object sender, RoutedEventArgs e)
-        {
-            
+            //
         }
+        
     }
 }
