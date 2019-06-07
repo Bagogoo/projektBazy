@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace projektTest
+{
+    /// <summary>
+    /// Logika interakcji dla klasy ParentPanel.xaml
+    /// </summary>
+    public partial class ParentPanel : Window
+    {
+        public ParentPanel()
+        {
+            InitializeComponent();
+        }
+
+        int id=0;
+        SqlConnection connection;
+
+        public ParentPanel(int _id, SqlConnection _conn)
+        {
+            id = _id;
+            connection = _conn;
+            Initialization();
+        }
+
+
+        private void Initialization()
+        {
+            string login="", haslo="", rola="";
+            SqlCommand polecenie = new SqlCommand("SELECT Role, Login, Password FROM Logowanie WHERE ID_USER=@id", connection);
+            polecenie.Parameters.Add("id", System.Data.SqlDbType.Int).Value = id;
+            SqlDataReader czytnik = polecenie.ExecuteReader();
+
+            while (czytnik.Read())
+            {
+                login = czytnik["Login"].ToString();
+                haslo = czytnik["Password"].ToString();
+                rola = czytnik["Role"].ToString();
+            }
+
+           this.Title = "Rodzic mode("+id+"): " + login + "     |     " + haslo + "     |     " + rola;
+        }
+    }
+}

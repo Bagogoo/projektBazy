@@ -36,19 +36,44 @@ namespace projektTest
             connection = new SqlConnection(connectionString);
             connection.Open();
 
-            SqlCommand polecenie = new SqlCommand("SELECT * FROM dziennik", connection);
+            string login = txtUsername.Text;
+            string password = txtPass.Text;
+
+            SqlCommand polecenie = new SqlCommand("SELECT Role, ID_USER FROM Logowanie WHERE Login=@login AND Password=@password", connection);
+            polecenie.Parameters.Add("login", System.Data.SqlDbType.VarChar).Value = login;
+            polecenie.Parameters.Add("password", System.Data.SqlDbType.VarChar).Value = password;
             SqlDataReader czytnik = polecenie.ExecuteReader();
 
-            string temp = "";
+            string role = "-"; //P - parent / C - child
+            int identyficator = 0;
+
             while (czytnik.Read())
             {
-                temp += "Login: "+czytnik["Logowanie"].ToString() + "\t";
-                temp += "Hasło: "+czytnik["Haslo"].ToString() + "\t";
-                temp += czytnik["Test"].ToString() + "\n";
+                role = czytnik["Role"].ToString();
+                identyficator = (int)czytnik["ID_USER"];
             }
 
             czytnik.Close();
-            MessageBox.Show(temp);
+
+            if(role == "Parent")
+            {
+                ParentPanel controlpanel = new ParentPanel(identyficator, connection);
+                this.Hide();
+                controlpanel.ShowDialog();
+                this.Show();
+            }
+            else if (role == "Child")
+            {
+                ChildPanel controlpanel = new ChildPanel(identyficator, connection);
+                this.Hide();
+                controlpanel.ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Podano niepoprawne dane logowania!");
+            }
+
 
             //po podaniu loginu i hasla wysyłane zostanie polecenie do bazy aby sprawdziło kto jest pod tymi danymi
 
@@ -58,6 +83,6 @@ namespace projektTest
 
             //kolejnie otwiera odpowiednie okno w zależności od tego jaką role rodzinną wczytało wysyłając w konstruktorze dane a okno logowania ukrywa
         }
-        
+
     }
 }
