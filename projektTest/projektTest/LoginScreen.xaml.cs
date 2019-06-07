@@ -50,7 +50,13 @@ namespace projektTest
             czytnik.Close();
             MessageBox.Show(temp);
 
-            //
+            //po podaniu loginu i hasla wysyłane zostanie polecenie do bazy aby sprawdziło kto jest pod tymi danymi
+
+            //jak to jest dziecko to otwiera panel dziecka wczytując odpowiednią osobę
+
+            //jak to rodzic to wczytuje panel rodzica wczytując odpowiednią osobę a jak dziadkowie to wczytuje dziadków:
+
+            //kolejnie otwiera odpowiednie okno w zależności od tego jaką role rodzinną wczytało wysyłając w konstruktorze dane a okno logowania ukrywa
         }
         
     }
