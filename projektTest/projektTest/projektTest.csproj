@@ -60,6 +60,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ConnectionSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginScreen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -70,6 +74,10 @@
     </Compile>
     <Compile Include="ChildPanel.xaml.cs">
       <DependentUpon>ChildPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionSet.cs" />
+    <Compile Include="ConnectionSettings.xaml.cs">
+      <DependentUpon>ConnectionSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>

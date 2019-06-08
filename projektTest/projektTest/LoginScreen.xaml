@@ -5,17 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:projektTest"
         mc:Ignorable="d"
-        Title="Sign in" Height="300" Width="300" FontSize="15" Background="#336666">
+        Title="Sign in" Height="300" Width="300" FontSize="15" Background="#336666" ResizeMode="NoResize">
     <StackPanel Margin="20">
         <Label Content="Login" Foreground="White" FontSize="25" HorizontalAlignment="Center"  VerticalAlignment="Top" />
         <Separator></Separator>
         <Label Content="Username" Foreground="White" HorizontalAlignment="Center"/>
-        <TextBox Name="tbx_username" Background="#2F4F4F" FontSize="16" Foreground="White" PreviewKeyDown="KeyDown_on_tbx"/>
+        <TextBox Name="tbx_username" Background="#2F4F4F" FontSize="16" Foreground="White" BorderBrush="White" PreviewKeyDown="KeyDown_on_tbx"/>
 
         <Label Content="Password" Foreground="White" HorizontalAlignment="Center"/>
-        <PasswordBox x:Name="pbx_password" Background="#2F4F4F" FontSize="16" Foreground="White" PreviewKeyDown="KeyDown_on_tbx"/>
-        <TextBox  x:Name="tbx_password" Background="#2F4F4F" FontSize="16" Foreground="White" PreviewKeyDown="KeyDown_on_tbx" Visibility="Hidden"/>
+        <PasswordBox x:Name="pbx_password" Background="#2F4F4F" FontSize="16" Foreground="White"  BorderBrush="White" PreviewKeyDown="KeyDown_on_tbx"/>
+        <TextBox  x:Name="tbx_password" Background="#2F4F4F" FontSize="16" Foreground="White"  BorderBrush="White" PreviewKeyDown="KeyDown_on_tbx" Visibility="Hidden"/>
         <CheckBox x:Name="cbx_hidepassword" Content="Hide password" Background="#FF336666" BorderBrush="#FF336666" Foreground="White" Checked="Cbx_hidepassword_Changed" Unchecked="Cbx_hidepassword_Changed" IsChecked="True"/>
-        <Button Name="btn_login" Content="Sign in" Margin="70 10"   Background="#2F4F4F" FontSize="16" Foreground="White" Click="BtnLogin_Click"/>
+        <Button Name="btn_login"  BorderBrush="White" Content="Sign in" Margin="70 10"   Background="#2F4F4F" FontSize="16" Foreground="White" Click="BtnLogin_Click"/>
+        <Button x:Name="btn_settings" Content="Settings" Margin="0,-25,10,10"  BorderBrush="White"  Background="#2F4F4F" FontSize="8" Foreground="White" HorizontalAlignment="Right" Width="40" Click="Btn_settings_Click"/>
+        <Button x:Name="btn_register" Content="Sign up" Margin="10,-25,200,10"  BorderBrush="White"  Background="#2F4F4F" FontSize="8" Foreground="White"/>
     </StackPanel>
 </Window>

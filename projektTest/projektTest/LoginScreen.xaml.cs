@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace projektTest
 {
@@ -25,6 +27,7 @@ namespace projektTest
         {
             InitializeComponent();
             CenterWindowOnScreen();
+            ReadConfiguration();
             tbx_username.Focus();
         }
 
@@ -39,12 +42,58 @@ namespace projektTest
             this.Top = (screenHeight / 2) - (windowHeight / 2);
         }
 
+        ConnectionSet connectionInfo = new ConnectionSet();
 
+        private void SaveConfiguration()
+        {
+            string path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            path += @"\FamilyCrDatabase\ConnectionInfo.xml";
+
+            FileStream str = new FileStream(path, FileMode.Create);
+            XmlSerializer serializer = new XmlSerializer(typeof(ConnectionSet));
+
+            serializer.Serialize(str, connectionInfo);
+            str.Close();
+        }
+
+        private void ReadConfiguration()
+        {
+            string path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string path_directory = path + @"\FamilyCrDatabase";
+            path += @"\FamilyCrDatabase\ConnectionInfo.xml";
+            //MessageBox.Show(path);
+
+
+
+
+            if (File.Exists(path))
+            {
+                FileStream str = new FileStream(path, FileMode.Open);
+                XmlSerializer serializer = new XmlSerializer(typeof(ConnectionSet));
+
+                ConnectionSet tmp = (ConnectionSet)serializer.Deserialize(str);
+                str.Close();
+
+                connectionInfo = tmp;
+            }
+            else
+            {
+                if (!Directory.Exists(path_directory))
+                {
+                    Directory.CreateDirectory(path_directory);
+                }
+                FileStream str = new FileStream(path, FileMode.Create);
+                XmlSerializer serializer = new XmlSerializer(typeof(ConnectionSet));
+
+                serializer.Serialize(str, connectionInfo);
+                str.Close();
+            }
+        }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection connection;
-            string connectionString = "Data Source=projektbazy.database.windows.net;Initial Catalog=BazaDziennik;User ID=projektbazy;Password=zaq1@WSX;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = "Data Source="+ connectionInfo.get_dataSource()+ ";Initial Catalog="+ connectionInfo.get_initialCatalog() + ";User ID="+ connectionInfo.get_userId() + ";Password="+ connectionInfo.get_password()+ ";Connect Timeout="+ connectionInfo.get_connectTimeout()+ ";Encrypt="+ connectionInfo.get_encrypt()+ ";TrustServerCertificate="+ connectionInfo.get_trustServerCertificate()+ ";ApplicationIntent="+ connectionInfo.get_applicationIntent()+ ";MultiSubnetFailover="+ connectionInfo.get_multiSubnetFailover()+ "";
             connection = new SqlConnection(connectionString);
             connection.Open();
 
@@ -121,6 +170,18 @@ namespace projektTest
                 tbx_password.Visibility = Visibility.Visible;
                 tbx_password.Height = 26;
                 tbx_password.Text = pbx_password.Password;
+            }
+        }
+
+        private void Btn_settings_Click(object sender, RoutedEventArgs e)
+        {
+            ConnectionSettings window = new ConnectionSettings(connectionInfo);
+            window.ShowDialog();
+
+            if(window.get_saveQuest())
+            {
+                connectionInfo = window.get_connectionInfo();
+                SaveConfiguration();
             }
         }
     }
