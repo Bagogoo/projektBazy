@@ -108,7 +108,7 @@ namespace projektTest
             polecenie.Parameters.Add("password", System.Data.SqlDbType.VarChar).Value = password;
             SqlDataReader czytnik = polecenie.ExecuteReader();
 
-            string role = "-"; //P - parent / C - child
+            string role = "-";
             int identyficator = 0;
 
             while (czytnik.Read())
@@ -183,6 +183,12 @@ namespace projektTest
                 connectionInfo = window.get_connectionInfo();
                 SaveConfiguration();
             }
+        }
+
+        private void btn_register_Click(object sender, RoutedEventArgs e)
+        {
+            Register window = new Register();
+            window.ShowDialog();
         }
     }
 }

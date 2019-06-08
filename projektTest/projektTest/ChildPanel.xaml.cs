@@ -66,6 +66,10 @@ namespace projektTest
             }
 
             this.Title = "Bajtel mode(" + id + "): " + login + "     |     " + haslo + "     |     " + rola;
+
+
+
+
         }
     }
 }
