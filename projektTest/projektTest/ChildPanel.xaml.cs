@@ -23,17 +23,33 @@ namespace projektTest
         public ChildPanel()
         {
             InitializeComponent();
+            CenterWindowOnScreen();
+        }
+
+        public ChildPanel(int _id, SqlConnection _conn)
+        {
+            InitializeComponent();
+            CenterWindowOnScreen();
+            id = _id;
+            connection = _conn;
+            Initialization();
+        }
+
+        //centrowanie okna na ekranie
+        private void CenterWindowOnScreen()
+        {
+            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double windowWidth = this.Width;
+            double windowHeight = this.Height;
+            this.Left = (screenWidth / 2) - (windowWidth / 2);
+            this.Top = (screenHeight / 2) - (windowHeight / 2);
         }
 
         int id = 0;
         SqlConnection connection;
 
-        public ChildPanel(int _id, SqlConnection _conn)
-        {
-            id = _id;
-            connection = _conn;
-            Initialization();
-        }
+
 
         private void Initialization()
         {

@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:projektTest"
         mc:Ignorable="d"
-        Title="Logowanie" Height="300" Width="300" FontSize="15" Background="#336666">
+        Title="Sign in" Height="300" Width="300" FontSize="15" Background="#336666">
     <StackPanel Margin="20">
         <Label Content="Login" Foreground="White" FontSize="25" HorizontalAlignment="Center"  VerticalAlignment="Top" />
         <Separator></Separator>
         <Label Content="Username" Foreground="White" HorizontalAlignment="Center"/>
-        <TextBox Name="txtUsername" Background="#2F4F4F" FontSize="16" Foreground="White"/>
+        <TextBox Name="tbx_username" Background="#2F4F4F" FontSize="16" Foreground="White" PreviewKeyDown="KeyDown_on_tbx"/>
     
         <Label Content="Password" Foreground="White" HorizontalAlignment="Center"/>
-        <TextBox Name="txtPass" Background="#2F4F4F" FontSize="16" Foreground="White"/>
-        <Button Name="btnLogin" Content="Zalaguj" Margin="70 10"   Background="#2F4F4F" FontSize="16" Foreground="White" Click="BtnLogin_Click"/>
+        <TextBox Name="tbx_password" Background="#2F4F4F" FontSize="16" Foreground="White" PreviewKeyDown="KeyDown_on_tbx"/>
+        <Button Name="btn_login" Content="Sign in" Margin="70 10"   Background="#2F4F4F" FontSize="16" Foreground="White" Click="BtnLogin_Click"/>
     </StackPanel>
 </Window>

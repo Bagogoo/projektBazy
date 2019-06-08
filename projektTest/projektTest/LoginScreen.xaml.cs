@@ -24,9 +24,21 @@ namespace projektTest
         public MainWindow()
         {
             InitializeComponent();
+            CenterWindowOnScreen();
+            tbx_username.Focus();
         }
 
-    
+        //centrowanie okna na ekranie
+        private void CenterWindowOnScreen()
+        {
+            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double windowWidth = this.Width;
+            double windowHeight = this.Height;
+            this.Left = (screenWidth / 2) - (windowWidth / 2);
+            this.Top = (screenHeight / 2) - (windowHeight / 2);
+        }
+
 
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
@@ -36,8 +48,8 @@ namespace projektTest
             connection = new SqlConnection(connectionString);
             connection.Open();
 
-            string login = txtUsername.Text;
-            string password = txtPass.Text;
+            string login = tbx_username.Text;
+            string password = tbx_password.Text;
 
             SqlCommand polecenie = new SqlCommand("SELECT Role, ID_USER FROM Logowanie WHERE Login=@login AND Password=@password", connection);
             polecenie.Parameters.Add("login", System.Data.SqlDbType.VarChar).Value = login;
@@ -71,19 +83,18 @@ namespace projektTest
             }
             else
             {
-                if (login == "jerzy" && password == "barglik") btnLogin.Content = "Wypij zdrowie!";
-                MessageBox.Show("Podano niepoprawne dane logowania!");
+                if (login == "Kujo" && password == "Jotaro") btn_login.Content = "Nani?!";
+                else MessageBox.Show("Podano niepoprawne dane logowania!");
             }
 
-
-            //po podaniu loginu i hasla wysyłane zostanie polecenie do bazy aby sprawdziło kto jest pod tymi danymi
-
-            //jak to jest dziecko to otwiera panel dziecka wczytując odpowiednią osobę
-
-            //jak to rodzic to wczytuje panel rodzica wczytując odpowiednią osobę a jak dziadkowie to wczytuje dziadków:
-
-            //kolejnie otwiera odpowiednie okno w zależności od tego jaką role rodzinną wczytało wysyłając w konstruktorze dane a okno logowania ukrywa
         }
 
+        private void KeyDown_on_tbx(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return) BtnLogin_Click(sender, e);
+            if (e.Key == Key.PageUp || e.Key == Key.Up) tbx_username.Focus();
+            if (e.Key == Key.PageDown || e.Key == Key.Down) tbx_password.Focus();
+            if (e.Key == Key.Escape) { tbx_username.Clear(); tbx_password.Clear(); tbx_username.Focus(); }
+        }
     }
 }
