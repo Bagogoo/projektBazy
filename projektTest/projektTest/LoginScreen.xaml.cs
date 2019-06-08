@@ -49,7 +49,10 @@ namespace projektTest
             connection.Open();
 
             string login = tbx_username.Text;
-            string password = tbx_password.Text;
+            string password;
+
+            if (cbx_hidepassword.IsChecked == true) password = pbx_password.Password;
+            else password = tbx_password.Text;
 
             SqlCommand polecenie = new SqlCommand("SELECT Role, ID_USER FROM Logowanie WHERE Login=@login AND Password=@password", connection);
             polecenie.Parameters.Add("login", System.Data.SqlDbType.VarChar).Value = login;
@@ -93,8 +96,32 @@ namespace projektTest
         {
             if (e.Key == Key.Return) BtnLogin_Click(sender, e);
             if (e.Key == Key.PageUp || e.Key == Key.Up) tbx_username.Focus();
-            if (e.Key == Key.PageDown || e.Key == Key.Down) tbx_password.Focus();
-            if (e.Key == Key.Escape) { tbx_username.Clear(); tbx_password.Clear(); tbx_username.Focus(); }
+            if (e.Key == Key.PageDown || e.Key == Key.Down)
+            {
+                if (cbx_hidepassword.IsChecked == true) pbx_password.Focus();
+                else tbx_password.Focus();
+            }
+            if (e.Key == Key.Escape) { tbx_username.Clear(); pbx_password.Clear(); tbx_username.Focus(); }
+        }
+
+        private void Cbx_hidepassword_Changed(object sender, RoutedEventArgs e)
+        {
+            if(cbx_hidepassword.IsChecked == true)
+            {
+                pbx_password.Visibility = Visibility.Visible;
+                pbx_password.Height = 26;
+                tbx_password.Visibility = Visibility.Hidden;
+                tbx_password.Height = 0;
+                pbx_password.Password = tbx_password.Text;
+            }
+            else
+            {
+                pbx_password.Visibility = Visibility.Hidden;
+                pbx_password.Height = 0;
+                tbx_password.Visibility = Visibility.Visible;
+                tbx_password.Height = 26;
+                tbx_password.Text = pbx_password.Password;
+            }
         }
     }
 }
