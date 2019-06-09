@@ -27,9 +27,9 @@
         <Label Content="trustServerCertificate" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label Content="applicationIntent" HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label Content="multiSubnetFailover" HorizontalAlignment="Left" Margin="10,258,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <CheckBox x:Name="cbx_trustServerCertificate" Background="#FF336666" BorderBrush="#FF336666" Foreground="White" Content="" HorizontalAlignment="Left" Margin="163,196,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="cbx_encrypt" Content="" Background="#FF336666" BorderBrush="#FF336666" Foreground="White" HorizontalAlignment="Left" Margin="157,165,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="cbx_multiSubnetFailover" Background="#FF336666" BorderBrush="#FF336666" Foreground="White" Content="" HorizontalAlignment="Left" Margin="157,258,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbx_trustServerCertificate" Background="#FF336666" BorderBrush="White" Foreground="White" Content="" HorizontalAlignment="Left" Margin="163,203,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbx_encrypt" Content="" Background="#FF336666" BorderBrush="White" Foreground="White" HorizontalAlignment="Left" Margin="163,173,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbx_multiSubnetFailover" Background="#FF336666" BorderBrush="White" Foreground="White" Content="" HorizontalAlignment="Left" Margin="163,269,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btn_default" BorderBrush="White" Background="#2F4F4F" FontSize="15" Foreground="White" Content="Default" HorizontalAlignment="Left" Margin="718,294,0,0" VerticalAlignment="Top" Width="72" Click="Btn_default_Click"/>
 
     </Grid>

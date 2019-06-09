@@ -70,7 +70,7 @@ namespace projektTest
                 rola = czytnik["Role"].ToString();
             }
 
-            this.Title = "Bajtel mode(" + id_user + "): " + login + "     |     " + haslo + "     |     " + rola;
+            this.Title = "Bajtel mode(" + id_user + "/" + id_account + "): " + login + "     |     " + haslo + "     |     " + rola;
             
             LoadCategories();
             RefreshOperationHistory();
