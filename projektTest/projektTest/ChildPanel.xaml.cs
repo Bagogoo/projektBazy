@@ -57,6 +57,7 @@ namespace projektTest
         private void Initialization()
         {
             //ustawianie nagłówka okna
+            connection.Open();
             string login = "", haslo = "", rola = "";
             SqlCommand polecenie = new SqlCommand("SELECT Role, Login, Password FROM Logowanie WHERE ID_USER=@id", connection);
             polecenie.Parameters.Add("id", System.Data.SqlDbType.Int).Value = id_user;
@@ -84,7 +85,7 @@ namespace projektTest
             {
                 id_account = (int)czytnik["ID_ACCOUNT"];
             }
-
+            connection.Close();
         }
 
         private void LoadCategories()
@@ -127,8 +128,9 @@ namespace projektTest
 
             string name = "", category = "";
             DateTime date;
-            float money;
+            double money;
 
+            connection.Open();
             SqlCommand polecenie = new SqlCommand("SELECT Name, Category, Amount, Date FROM Operation WHERE ID_ACCOUNT=@id", connection);
             polecenie.Parameters.Add("id", System.Data.SqlDbType.Int).Value = id_account;
             SqlDataReader czytnik = polecenie.ExecuteReader();
@@ -137,29 +139,32 @@ namespace projektTest
             {
                 name = czytnik[""].ToString();
                 category = czytnik["Category"].ToString();
-                money = (float)czytnik["Amount"];
+                money = (double)czytnik["Amount"];
                 date = (DateTime)czytnik["Date"];
 
                 lbx_history.Items.Add(name + money + date + category);
             }
+            connection.Close();
         }
 
         private void RefreshCreditsInfo()
         {
-            float profit = 0, expenses = 0, balance = 0, tmp = 0;
+            double profit = 0, expenses = 0, balance = 0, tmp = 0;
+
+            connection.Open();
             SqlCommand polecenie = new SqlCommand("SELECT Amount FROM Operation WHERE ID_ACCOUNT=@id", connection);
             polecenie.Parameters.Add("id", System.Data.SqlDbType.Int).Value = id_account;
             SqlDataReader czytnik = polecenie.ExecuteReader();
 
             while (czytnik.Read())
             {
-                tmp = (float)czytnik["Amount"];
+                tmp = (double)czytnik["Amount"];
 
                 if (tmp >= 0) profit += tmp;
                 else if (tmp < 0) expenses += Math.Abs(tmp);
             }
 
-            if (profit >= expenses) lbl_saldo.Foreground = Brushes.Black;
+            if (profit >= expenses) lbl_saldo.Foreground = Brushes.White;
             else lbl_saldo.Foreground = Brushes.Red;
 
             balance = profit - expenses;
@@ -167,13 +172,30 @@ namespace projektTest
             lbl_expenses.Content = expenses;
             lbl_revenues.Content = profit;
 
+            connection.Close();
         }
 
+        private void btn_addPayment_click(object sender, RoutedEventArgs e)
+        {
+            string name = tbx_name.Text;
+            Double.TryParse(tbx_price.Text, out double price);
+            price = Math.Abs(price);
+            price *= -1;
+            string category = cbx_category.SelectedItem.ToString();
+            DateTime date = cal_calendar.SelectedDate.Value;
 
+            connection.Open();
+            SqlCommand polecenie = new SqlCommand("INSERT INTO Operation(ID_ACCOUNT, Name, Amount, Category, Date) VALUES(@id, @name, @amount, @category, @date)", connection);
+            polecenie.Parameters.Add("id", System.Data.SqlDbType.Int).Value = id_account;
+            polecenie.Parameters.Add("name", System.Data.SqlDbType.VarChar).Value = name;
+            polecenie.Parameters.Add("amount", System.Data.SqlDbType.Money).Value = price;
+            polecenie.Parameters.Add("category", System.Data.SqlDbType.VarChar).Value = category;
+            polecenie.Parameters.Add("date", System.Data.SqlDbType.Date).Value = date;
+            polecenie.ExecuteNonQuery();
 
-
-
-
-
+            connection.Close();
+            RefreshOperationHistory();
+            RefreshCreditsInfo();
+        }
     }
 }

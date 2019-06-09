@@ -138,7 +138,7 @@ namespace projektTest
                 if (login == "Kujo" && password == "Jotaro") btn_login.Content = "Nani?!";
                 else MessageBox.Show("Podano niepoprawne dane logowania!");
             }
-
+            connection.Close();
         }
 
         private void KeyDown_on_tbx(object sender, KeyEventArgs e)
