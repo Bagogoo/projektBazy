@@ -125,6 +125,7 @@ namespace projektTest
                 this.Hide();
                 controlpanel.ShowDialog();
                 this.Show();
+                ClearFields();
             }
             else if (role == "Child")
             {
@@ -132,6 +133,7 @@ namespace projektTest
                 this.Hide();
                 controlpanel.ShowDialog();
                 this.Show();
+                ClearFields();
             }
             else
             {
@@ -189,6 +191,14 @@ namespace projektTest
         {
             Register window = new Register();
             window.ShowDialog();
+        }
+
+        private void ClearFields()
+        {
+            tbx_username.Clear();
+            tbx_password.Clear();
+            pbx_password.Clear();
+            tbx_username.Focus();
         }
     }
 }
