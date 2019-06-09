@@ -27,5 +27,6 @@
         <ComboBox x:Name="cbx_childPay" HorizontalAlignment="Left" Margin="307,209,0,0" VerticalAlignment="Top" Width="273"/>
         <RadioButton x:Name="rbtn_payin" Content="Przychód" HorizontalAlignment="Left" Margin="700,111,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="rbtn_payout" Content="Odchód" HorizontalAlignment="Left" Margin="700,126,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_editCategories" Content="Edytuj kategorie" HorizontalAlignment="Left" Margin="681,381,0,0" VerticalAlignment="Top" Width="94"/>
     </Grid>
 </Window>
