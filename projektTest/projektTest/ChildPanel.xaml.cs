@@ -196,6 +196,34 @@ namespace projektTest
             connection.Close();
             RefreshOperationHistory();
             RefreshCreditsInfo();
+            ClearFields();
         }
+
+        private void ClearFields()
+        {
+            tbx_name.Clear();
+            tbx_price.Clear();
+            cbx_category.SelectedIndex = 1;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
