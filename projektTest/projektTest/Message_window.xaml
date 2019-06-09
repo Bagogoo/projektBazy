@@ -1,0 +1,15 @@
+﻿<Window x:Class="projektTest.Message_window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:projektTest"
+        mc:Ignorable="d"
+        Title="Message_window" Height="480" Width="640" Background="#FFA60000" WindowStyle="None" Opacity="0.7" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Button x:Name="btn_ok" Content="Ok" HorizontalAlignment="Left" VerticalAlignment="Top" Width="620" Margin="10,403,0,0" Height="67" Background="#FF3B0808" BorderBrush="White" Foreground="White" FontSize="36" Click="Btn_ok_Click"/>
+        <TextBox x:Name="tbx_info" IsReadOnly="True" FontSize="20" HorizontalAlignment="Left" Height="333" Margin="10,65,0,0" TextWrapping="Wrap" Text="---" TextAlignment="Center" VerticalAlignment="Top" Width="620" Background="#FF490000" BorderBrush="White" Foreground="White" SelectionBrush="White"/>
+        <Label x:Name="lbl_info" Content="---" FontSize="30" Foreground="White" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="620"/>
+
+    </Grid>
+</Window>

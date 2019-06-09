@@ -43,6 +43,7 @@ namespace projektTest
         }
 
         ConnectionSet connectionInfo = new ConnectionSet();
+        Message message = new Message();
 
         private void SaveConfiguration()
         {
@@ -138,7 +139,7 @@ namespace projektTest
             else
             {
                 if (login == "Kujo" && password == "Jotaro") btn_login.Content = "Nani?!";
-                else MessageBox.Show("Podano niepoprawne dane logowania!");
+                else message.ShowMessage("Nie udało się zalogować", "Podano niepoprawny login lub hasło.");
             }
             connection.Close();
         }
