@@ -66,7 +66,6 @@ namespace projektTest
 
 
 
-
             if (File.Exists(path))
             {
                 FileStream str = new FileStream(path, FileMode.Open);
