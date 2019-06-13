@@ -95,52 +95,59 @@ namespace projektTest
             SqlConnection connection;
             string connectionString = "Data Source="+ connectionInfo.get_dataSource()+ ";Initial Catalog="+ connectionInfo.get_initialCatalog() + ";User ID="+ connectionInfo.get_userId() + ";Password="+ connectionInfo.get_password()+ ";Connect Timeout="+ connectionInfo.get_connectTimeout()+ ";Encrypt="+ connectionInfo.get_encrypt()+ ";TrustServerCertificate="+ connectionInfo.get_trustServerCertificate()+ ";ApplicationIntent="+ connectionInfo.get_applicationIntent()+ ";MultiSubnetFailover="+ connectionInfo.get_multiSubnetFailover()+ "";
             connection = new SqlConnection(connectionString);
-            connection.Open();
-
-            string login = tbx_username.Text;
-            string password;
-
-            if (cbx_hidepassword.IsChecked == true) password = pbx_password.Password;
-            else password = tbx_password.Text;
-
-            SqlCommand polecenie = new SqlCommand("SELECT Role, ID_USER FROM Logowanie WHERE Login=@login AND Password=@password", connection);
-            polecenie.Parameters.Add("login", System.Data.SqlDbType.VarChar).Value = login;
-            polecenie.Parameters.Add("password", System.Data.SqlDbType.VarChar).Value = password;
-            SqlDataReader czytnik = polecenie.ExecuteReader();
-
-            string role = "-";
-            int identyficator = 0;
-
-            while (czytnik.Read())
+            try
             {
-                role = czytnik["Role"].ToString();
-                identyficator = (int)czytnik["ID_USER"];
-            }
+                connection.Open();
 
-            czytnik.Close();
+                string login = tbx_username.Text;
+                string password;
 
-            if(role == "Parent")
-            {
-                ParentPanel controlpanel = new ParentPanel(identyficator, connection);
-                this.Hide();
-                controlpanel.ShowDialog();
-                this.Show();
-                ClearFields();
+                if (cbx_hidepassword.IsChecked == true) password = pbx_password.Password;
+                else password = tbx_password.Text;
+
+                SqlCommand polecenie = new SqlCommand("SELECT Role, ID_USER FROM Logowanie WHERE Login=@login AND Password=@password", connection);
+                polecenie.Parameters.Add("login", System.Data.SqlDbType.VarChar).Value = login;
+                polecenie.Parameters.Add("password", System.Data.SqlDbType.VarChar).Value = password;
+                SqlDataReader czytnik = polecenie.ExecuteReader();
+
+                string role = "-";
+                int identyficator = 0;
+
+                while (czytnik.Read())
+                {
+                    role = czytnik["Role"].ToString();
+                    identyficator = (int)czytnik["ID_USER"];
+                }
+
+                czytnik.Close();
+
+                if (role == "Parent")
+                {
+                    ParentPanel controlpanel = new ParentPanel(identyficator, connection);
+                    this.Hide();
+                    controlpanel.ShowDialog();
+                    this.Show();
+                    ClearFields();
+                }
+                else if (role == "Child")
+                {
+                    ChildPanel controlpanel = new ChildPanel(identyficator, connection);
+                    this.Hide();
+                    controlpanel.ShowDialog();
+                    this.Show();
+                    ClearFields();
+                }
+                else
+                {
+                    if (login == "Kujo" && password == "Jotaro") btn_login.Content = "Nani?!";
+                    else message.ShowMessage("Nie udało się zalogować", "Podano niepoprawny login lub hasło.");
+                }
+                connection.Close();
             }
-            else if (role == "Child")
+            catch
             {
-                ChildPanel controlpanel = new ChildPanel(identyficator, connection);
-                this.Hide();
-                controlpanel.ShowDialog();
-                this.Show();
-                ClearFields();
+                message.ShowMessage("Nie udało się połączyć", "Nie można nawiązać połączenia z bazą danych.");
             }
-            else
-            {
-                if (login == "Kujo" && password == "Jotaro") btn_login.Content = "Nani?!";
-                else message.ShowMessage("Nie udało się zalogować", "Podano niepoprawny login lub hasło.");
-            }
-            connection.Close();
         }
 
         private void KeyDown_on_tbx(object sender, KeyEventArgs e)

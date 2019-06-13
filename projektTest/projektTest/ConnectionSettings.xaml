@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:projektTest"
         mc:Ignorable="d"
-        Title="ConnectionSettings" Height="320.912" Width="800" WindowStartupLocation="Manual" ResizeMode="NoResize" FontSize="15" Background="#336666" WindowStyle="None" MouseDown="Window_MouseDown">
+        Title="ConnectionSettings" Height="331.351" Width="800" WindowStartupLocation="Manual" ResizeMode="NoResize" FontSize="15" Background="#336666" WindowStyle="None" MouseDown="Window_MouseDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
