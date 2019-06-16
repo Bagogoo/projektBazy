@@ -142,7 +142,7 @@ namespace projektTest
                 money = (double)czytnik["Amount"];
                 date = (DateTime)czytnik["Date"];
 
-                lbx_history.Items.Add(name + money + date + category);
+                lbx_history.Items.Add(name + " " + money + " " + date + " " + category);
             }
             connection.Close();
         }
@@ -206,24 +206,10 @@ namespace projektTest
             cbx_category.SelectedIndex = 1;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private void Btn_addCategory_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryEdit window = new CategoryEdit();
+            window.ShowDialog();
+        }
     }
 }

@@ -68,5 +68,11 @@ namespace projektTest
 
            this.Title = "Rodzic mode("+id+"): " + login + "     |     " + haslo + "     |     " + rola;
         }
+
+        private void Btn_Categories_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryEdit window = new CategoryEdit();
+            window.ShowDialog();
+        }
     }
 }

@@ -8,9 +8,9 @@ namespace projektTest
 {
     class Message
     {
-        public void ShowMessage(string head, string body)
+        public void ShowMessage(string head, string body, bool type)
         {
-            Message_window window = new Message_window(head, body);
+            Message_window window = new Message_window(head, body, type);
             window.ShowDialog();
         }
     }

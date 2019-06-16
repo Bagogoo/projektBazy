@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace projektTest
 {
-    class Category
+    public class Category
     {
         public Category() { category = ""; }
         public Category(string val) { category = val; }
 
+        [XmlAttribute]
         private string category;
 
         public string get_category() { return category; }

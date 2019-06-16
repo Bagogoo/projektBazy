@@ -140,13 +140,13 @@ namespace projektTest
                 else
                 {
                     if (login == "Kujo" && password == "Jotaro") btn_login.Content = "Nani?!";
-                    else message.ShowMessage("Nie udało się zalogować", "Podano niepoprawny login lub hasło.");
+                    else message.ShowMessage("Nie udało się zalogować", "Podano niepoprawny login lub hasło.", false);
                 }
                 connection.Close();
             }
             catch
             {
-                message.ShowMessage("Nie udało się połączyć", "Nie można nawiązać połączenia z bazą danych.");
+                message.ShowMessage("Nie udało się połączyć", "Nie można nawiązać połączenia z bazą danych.", false);
             }
         }
 
@@ -191,6 +191,7 @@ namespace projektTest
             {
                 connectionInfo = window.get_connectionInfo();
                 SaveConfiguration();
+                message.ShowMessage("Zapisano ustawienia", "---", true);
             }
         }
 

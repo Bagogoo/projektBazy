@@ -24,11 +24,24 @@ namespace projektTest
             InitializeComponent();
         }
 
-        public Message_window(string header, string body)
+        public Message_window(string header, string body, bool type)
         {
             InitializeComponent();
             lbl_info.Content = header;
             tbx_info.Text = body;
+
+            if(type) //if type value is true, then window is normal info screen
+            {
+                this.Background = Brushes.Gray;
+                tbx_info.Background = Brushes.DarkSlateGray;
+                btn_ok.Background = Brushes.DarkSlateGray;
+            }
+            else //if type is false, then window is error message
+            {
+                this.Background = Brushes.Red;
+                tbx_info.Background = Brushes.DarkRed;
+                btn_ok.Background = Brushes.DarkRed;
+            }
         }
 
         private void Btn_ok_Click(object sender, RoutedEventArgs e)

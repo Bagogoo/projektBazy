@@ -22,7 +22,7 @@
         <Label Foreground="White" Content="Przychody:" HorizontalAlignment="Left" Margin="307,381,0,0" VerticalAlignment="Top"/>
         <Label Foreground="White" x:Name="lbl_revenues" Content="---" HorizontalAlignment="Left" Margin="379,381,0,0" VerticalAlignment="Top"/>
         <Calendar x:Name="cal_calendar" HorizontalAlignment="Left" Margin="596,143,0,0" VerticalAlignment="Top" Background="#FF00B4B4" BorderBrush="White" Foreground="White"/>
-        <ComboBox x:Name="cbx_category" HorizontalAlignment="Left" Margin="318,172,0,0" VerticalAlignment="Top" Width="262" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
+        <ComboBox x:Name="cbx_category" HorizontalAlignment="Left" Margin="318,172,0,0" VerticalAlignment="Top" Width="236" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
         <Label Foreground="White" Content="Kategoria" HorizontalAlignment="Left" Margin="304,141,0,0" VerticalAlignment="Top"/>
         <CheckBox Content="Przelew do bajtla" HorizontalAlignment="Left" Margin="397,220,0,0" VerticalAlignment="Top" Background="#FF428383" BorderBrush="White" Foreground="White"/>
         <ComboBox x:Name="cbx_childPay" HorizontalAlignment="Left" Margin="318,240,0,0" VerticalAlignment="Top" Width="262" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
@@ -30,5 +30,6 @@
         <RadioButton IsChecked="True" x:Name="rbtn_payout" Content="Odchód" HorizontalAlignment="Left" Margin="700,126,0,0" VerticalAlignment="Top" Background="#FF428383" BorderBrush="White" Foreground="White"/>
         <Button x:Name="btn_editCategories" Content="Edytuj kategorie" HorizontalAlignment="Left" Margin="690,319,0,0" VerticalAlignment="Top" Width="94" Background="DarkSlateGray" Foreground="White" BorderBrush="White"/>
         <Label Foreground="White" Content="Nowy wydatek" HorizontalAlignment="Left" Margin="499,3,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_Categories" Content="+/-" HorizontalAlignment="Left" Margin="559,172,0,0" VerticalAlignment="Top" Width="21" Background="DarkSlateGray" Foreground="White" BorderBrush="White" Click="Btn_Categories_Click"/>
     </Grid>
 </Window>
