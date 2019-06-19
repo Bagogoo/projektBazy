@@ -28,7 +28,6 @@
         <ComboBox x:Name="cbx_childPay" HorizontalAlignment="Left" Margin="318,240,0,0" VerticalAlignment="Top" Width="262" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
         <RadioButton x:Name="rbtn_payin" Content="Przychód" HorizontalAlignment="Left" Margin="700,111,0,0" VerticalAlignment="Top" Background="#FF428383" BorderBrush="White" Foreground="White"/>
         <RadioButton IsChecked="True" x:Name="rbtn_payout" Content="Odchód" HorizontalAlignment="Left" Margin="700,126,0,0" VerticalAlignment="Top" Background="#FF428383" BorderBrush="White" Foreground="White"/>
-        <Button x:Name="btn_editCategories" Content="Edytuj kategorie" HorizontalAlignment="Left" Margin="690,319,0,0" VerticalAlignment="Top" Width="94" Background="DarkSlateGray" Foreground="White" BorderBrush="White"/>
         <Label Foreground="White" Content="Nowy wydatek" HorizontalAlignment="Left" Margin="499,3,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btn_Categories" Content="+/-" HorizontalAlignment="Left" Margin="559,172,0,0" VerticalAlignment="Top" Width="21" Background="DarkSlateGray" Foreground="White" BorderBrush="White" Click="Btn_Categories_Click"/>
     </Grid>

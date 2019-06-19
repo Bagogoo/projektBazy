@@ -79,6 +79,7 @@ namespace projektTest
 
         private void FillCategories()
         {
+            
             cbx_category.Items.Clear();
             try
             {
