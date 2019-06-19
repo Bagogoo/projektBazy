@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:projektTest"
         mc:Ignorable="d"
-        Title="CategoryEdit" Height="450" Width="800">
-    <Grid>
-        <ListBox x:Name="lbx_category" HorizontalAlignment="Left" Height="337" Margin="10,43,0,0" VerticalAlignment="Top" Width="683"/>
-        <Button x:Name="btn_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="90,389,0,0" VerticalAlignment="Top" Width="75" Click="Btn_cancel_Click"/>
-        <Button x:Name="btn_save" Content="Save" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Width="75" Click="Btn_save_Click"/>
-        <Button x:Name="btn_addNewCategory" Content="+" HorizontalAlignment="Left" Margin="632,10,0,0" VerticalAlignment="Top" Width="28" Height="23" Click="Btn_addNewCategory_Click"/>
-        <Button x:Name="btn_removeCategory" Content="-" HorizontalAlignment="Left" Margin="665,10,0,0" VerticalAlignment="Top" Width="28" Height="23" Click="Btn_removeCategory_Click"/>
-        <TextBox x:Name="tbx_categoryName" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="617" MaxLength="20"/>
+        Title="CategoryEdit" Height="413.445" Width="700.42" WindowStartupLocation="Manual" ResizeMode="NoResize" WindowStyle="None">
+    <Grid Background="#FF336666">
+        <ListBox x:Name="lbx_category" HorizontalAlignment="Left" Height="337" Margin="10,43,0,0" VerticalAlignment="Top" Width="683" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="btn_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="384,385,0,0" VerticalAlignment="Top" Width="309" Click="Btn_cancel_Click" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="btn_save" Content="Save" HorizontalAlignment="Left" Margin="10,385,0,0" VerticalAlignment="Top" Width="369" Click="Btn_save_Click" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="btn_addNewCategory" Content="+" HorizontalAlignment="Left" Margin="632,10,0,0" VerticalAlignment="Top" Width="28" Height="23" Click="Btn_addNewCategory_Click" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="btn_removeCategory" Content="-" HorizontalAlignment="Left" Margin="665,10,0,0" VerticalAlignment="Top" Width="28" Height="23" Click="Btn_removeCategory_Click" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
+        <TextBox x:Name="tbx_categoryName" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="617" MaxLength="20" Foreground="White" BorderBrush="White" Background="DarkSlateGray"/>
     </Grid>
 </Window>

@@ -119,7 +119,7 @@ namespace projektTest
                     identyficator = (int)czytnik["ID_USER"];
                 }
 
-                czytnik.Close();
+                connection.Close();
 
                 if (role == "Parent")
                 {
@@ -142,7 +142,7 @@ namespace projektTest
                     if (login == "Kujo" && password == "Jotaro") btn_login.Content = "Nani?!";
                     else message.ShowMessage("Nie udało się zalogować", "Podano niepoprawny login lub hasło.", false);
                 }
-                connection.Close();
+               // connection.Close();
             }
             catch
             {
@@ -198,7 +198,9 @@ namespace projektTest
         private void btn_register_Click(object sender, RoutedEventArgs e)
         {
             Register window = new Register();
+            this.Hide();
             window.ShowDialog();
+            this.Show();
         }
 
         private void ClearFields()

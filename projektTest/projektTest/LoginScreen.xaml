@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Sign in" Height="300" Width="300" FontSize="15" Background="#336666" ResizeMode="NoResize">
     <StackPanel Margin="20">
-        <Label Content="Login" Foreground="White" FontSize="25" HorizontalAlignment="Center"  VerticalAlignment="Top" />
+        <Label Content="Sign in" Foreground="White" FontSize="25" HorizontalAlignment="Center"  VerticalAlignment="Top" />
         <Separator></Separator>
         <Label Content="Username" Foreground="White" HorizontalAlignment="Center"/>
         <TextBox Name="tbx_username" Background="#2F4F4F" FontSize="16" Foreground="White" BorderBrush="White" PreviewKeyDown="KeyDown_on_tbx"/>
