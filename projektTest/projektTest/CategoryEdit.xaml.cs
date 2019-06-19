@@ -22,23 +22,20 @@ namespace projektTest
     /// </summary>
     public partial class CategoryEdit : Window
     {
-        public CategoryEdit(ConnectionSet _con)
+        public CategoryEdit(SqlConnection _con)
         {
-            connectionInfo = _con;
+            connection = _con;
             InitializeComponent();
             ReadFromFile();
             RefreshListbox();
         }
 
         List<Category> categories = new List<Category>();
-        ConnectionSet connectionInfo = new ConnectionSet();
+        SqlConnection connection;
         Message message = new Message();
 
         private void ReadFromFile()
         {
-            SqlConnection connection;
-            string connectionString = "Data Source=" + connectionInfo.get_dataSource() + ";Initial Catalog=" + connectionInfo.get_initialCatalog() + ";User ID=" + connectionInfo.get_userId() + ";Password=" + connectionInfo.get_password() + ";Connect Timeout=" + connectionInfo.get_connectTimeout() + ";Encrypt=" + connectionInfo.get_encrypt() + ";TrustServerCertificate=" + connectionInfo.get_trustServerCertificate() + ";ApplicationIntent=" + connectionInfo.get_applicationIntent() + ";MultiSubnetFailover=" + connectionInfo.get_multiSubnetFailover() + "";
-            connection = new SqlConnection(connectionString);
             try
             {
                 connection.Open();
@@ -84,34 +81,24 @@ namespace projektTest
         {
             try
             {
-                SqlConnection connection;
-                string connectionString = "Data Source=" + connectionInfo.get_dataSource() + ";Initial Catalog=" + connectionInfo.get_initialCatalog() + ";User ID=" + connectionInfo.get_userId() + ";Password=" + connectionInfo.get_password() + ";Connect Timeout=" + connectionInfo.get_connectTimeout() + ";Encrypt=" + connectionInfo.get_encrypt() + ";TrustServerCertificate=" + connectionInfo.get_trustServerCertificate() + ";ApplicationIntent=" + connectionInfo.get_applicationIntent() + ";MultiSubnetFailover=" + connectionInfo.get_multiSubnetFailover() + "";
-                connection = new SqlConnection(connectionString);
-                try
+                connection.Open();
+
+                SqlCommand sql_command_clear = new SqlCommand("DELETE FROM Categories", connection);
+                sql_command_clear.ExecuteNonQuery();
+
+                foreach (var val in lbx_category.Items.ToString())
                 {
-                    connection.Open();
-
-                    SqlCommand sql_command_clear = new SqlCommand("DELETE FROM Categories", connection);
-                    sql_command_clear.ExecuteNonQuery();
-
-                    foreach(var val in lbx_category.Items.ToString())
-                    {
-                        SqlCommand sql_add_command = new SqlCommand("INSERT INTO Categories('Category') VALUES(@tmp_val)", connection);
-                        sql_add_command.Parameters.Add("tmp_val", System.Data.SqlDbType.VarChar).Value = val;
-                        sql_add_command.ExecuteNonQuery();
-                    }
-
-                    connection.Close();
-                    message.ShowMessage("Powodzenie", "Zapisano wprowadzone zmiany", true);
+                    SqlCommand sql_add_command = new SqlCommand("INSERT INTO Categories('Category') VALUES(@tmp_val)", connection);
+                    sql_add_command.Parameters.Add("tmp_val", System.Data.SqlDbType.VarChar).Value = val;
+                    sql_add_command.ExecuteNonQuery();
                 }
-                catch
-                {
-                    message.ShowMessage("Błąd", "Podczas zapisywania kategorii na serwerze.", false);
-                }
+
+                connection.Close();
+                message.ShowMessage("Powodzenie", "Zapisano wprowadzone zmiany", true);
             }
             catch
             {
-                message.ShowMessage("Błąd", "Nie udało się zapisać wprowadzonych zmian", false);
+                message.ShowMessage("Błąd", "Podczas zapisywania kategorii na serwerze.", false);
             }
             this.Close();
         }

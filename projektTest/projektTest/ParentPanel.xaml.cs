@@ -23,6 +23,7 @@ namespace projektTest
         public ParentPanel()
         {
             InitializeComponent();
+            FillCategories();
             CenterWindowOnScreen();
         }
 
@@ -48,8 +49,8 @@ namespace projektTest
 
         int id=0;
         SqlConnection connection;
+        Message message = new Message();
 
-        
 
 
         private void Initialization()
@@ -71,8 +72,33 @@ namespace projektTest
 
         private void Btn_Categories_Click(object sender, RoutedEventArgs e)
         {
-            CategoryEdit window = new CategoryEdit();
+            CategoryEdit window = new CategoryEdit(connection);
             window.ShowDialog();
+            FillCategories();
+        }
+
+        private void FillCategories()
+        {
+            cbx_category.Items.Clear();
+            try
+            {
+                connection.Open();
+
+                SqlCommand polecenie = new SqlCommand("SELECT Category FROM Categories", connection);
+                SqlDataReader czytnik = polecenie.ExecuteReader();
+
+                while (czytnik.Read())
+                {
+                    cbx_category.Items.Add(czytnik["Category"].ToString());
+                }
+
+                czytnik.Close();
+
+            }
+            catch
+            {
+                message.ShowMessage("Błąd", "Podczas pobierania listy kategorii z serwera wystąpił nagły błąd.", false);
+            }
         }
     }
 }
