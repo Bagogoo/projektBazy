@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using System.Xml.Serialization;
+using System.Data.SqlClient;
 
 namespace projektTest
 {
@@ -21,49 +22,41 @@ namespace projektTest
     /// </summary>
     public partial class CategoryEdit : Window
     {
-        public CategoryEdit()
+        public CategoryEdit(ConnectionSet _con)
         {
+            connectionInfo = _con;
             InitializeComponent();
             ReadFromFile();
             RefreshListbox();
         }
 
         List<Category> categories = new List<Category>();
+        ConnectionSet connectionInfo = new ConnectionSet();
         Message message = new Message();
 
         private void ReadFromFile()
         {
-            string path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string path_directory = path + @"\FamilyCrDatabase";
-            path += @"\FamilyCrDatabase\Categories.xml";
-
-
-
-
-            if (File.Exists(path))
+            SqlConnection connection;
+            string connectionString = "Data Source=" + connectionInfo.get_dataSource() + ";Initial Catalog=" + connectionInfo.get_initialCatalog() + ";User ID=" + connectionInfo.get_userId() + ";Password=" + connectionInfo.get_password() + ";Connect Timeout=" + connectionInfo.get_connectTimeout() + ";Encrypt=" + connectionInfo.get_encrypt() + ";TrustServerCertificate=" + connectionInfo.get_trustServerCertificate() + ";ApplicationIntent=" + connectionInfo.get_applicationIntent() + ";MultiSubnetFailover=" + connectionInfo.get_multiSubnetFailover() + "";
+            connection = new SqlConnection(connectionString);
+            try
             {
-                FileStream str = new FileStream(path, FileMode.Open);
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Category>));
+                connection.Open();
 
-                List<Category> tmp = (List<Category>)serializer.Deserialize(str);
-                str.Close();
+                SqlCommand polecenie = new SqlCommand("SELECT Category FROM Categories", connection);
+                SqlDataReader czytnik = polecenie.ExecuteReader();
 
-                foreach (Category val in tmp) lbx_category.Items.Add(val.get_category());
-            }
-            else
-            {
-                message.ShowMessage("Błąd", "Brak pliku z kategoriami", false);
-                if (!Directory.Exists(path_directory))
+                while (czytnik.Read())
                 {
-                    Directory.CreateDirectory(path_directory);
-                    message.ShowMessage("Tworzenie", "Tworzenie kataloku z kategoriami w MojeDomumenty", true);
+                    lbx_category.Items.Add(czytnik["Category"].ToString());
                 }
-                message.ShowMessage("Tworzenie", "Tworzenie pliku z kategoriami w MojeDomumenty", true);
-                FileStream str = new FileStream(path, FileMode.Create);
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Category>));
 
-                serializer.Serialize(str, categories);
-                str.Close();
+                czytnik.Close();
+
+            }
+            catch
+            {
+                message.ShowMessage("Błąd", "Podczas pobierania listy kategorii z serwera wystąpił nagły błąd.", false);
             }
         }
 
@@ -91,15 +84,30 @@ namespace projektTest
         {
             try
             {
-                string path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                path += @"\FamilyCrDatabase\Categories.xml";
+                SqlConnection connection;
+                string connectionString = "Data Source=" + connectionInfo.get_dataSource() + ";Initial Catalog=" + connectionInfo.get_initialCatalog() + ";User ID=" + connectionInfo.get_userId() + ";Password=" + connectionInfo.get_password() + ";Connect Timeout=" + connectionInfo.get_connectTimeout() + ";Encrypt=" + connectionInfo.get_encrypt() + ";TrustServerCertificate=" + connectionInfo.get_trustServerCertificate() + ";ApplicationIntent=" + connectionInfo.get_applicationIntent() + ";MultiSubnetFailover=" + connectionInfo.get_multiSubnetFailover() + "";
+                connection = new SqlConnection(connectionString);
+                try
+                {
+                    connection.Open();
 
-                FileStream str = new FileStream(path, FileMode.Create);
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Category>));
+                    SqlCommand sql_command_clear = new SqlCommand("DELETE FROM Categories", connection);
+                    sql_command_clear.ExecuteNonQuery();
 
-                serializer.Serialize(str, categories);
-                str.Close();
-                message.ShowMessage("Powodzenie", "Zapisano wprowadzone zmiany", true);
+                    foreach(var val in lbx_category.Items.ToString())
+                    {
+                        SqlCommand sql_add_command = new SqlCommand("INSERT INTO Categories('Category') VALUES(@tmp_val)", connection);
+                        sql_add_command.Parameters.Add("tmp_val", System.Data.SqlDbType.VarChar).Value = val;
+                        sql_add_command.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                    message.ShowMessage("Powodzenie", "Zapisano wprowadzone zmiany", true);
+                }
+                catch
+                {
+                    message.ShowMessage("Błąd", "Podczas zapisywania kategorii na serwerze.", false);
+                }
             }
             catch
             {
