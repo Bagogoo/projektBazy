@@ -198,7 +198,9 @@ namespace projektTest
         private void btn_register_Click(object sender, RoutedEventArgs e)
         {
             Register window = new Register();
+            this.Hide();
             window.ShowDialog();
+            this.Show();
         }
 
         private void ClearFields()
