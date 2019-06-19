@@ -55,6 +55,7 @@ namespace projektTest
 
         private void Initialization()
         {
+            connection.Open();
             string login="", haslo="", rola="";
             SqlCommand polecenie = new SqlCommand("SELECT Role, Login, Password FROM Logowanie WHERE ID_USER=@id", connection);
             polecenie.Parameters.Add("id", System.Data.SqlDbType.Int).Value = id;
@@ -66,8 +67,8 @@ namespace projektTest
                 haslo = czytnik["Password"].ToString();
                 rola = czytnik["Role"].ToString();
             }
-
-           this.Title = "Rodzic mode("+id+"): " + login + "     |     " + haslo + "     |     " + rola;
+            connection.Close();
+            this.Title = "Rodzic mode("+id+"): " + login + "     |     " + haslo + "     |     " + rola;
         }
 
         private void Btn_Categories_Click(object sender, RoutedEventArgs e)
@@ -79,7 +80,7 @@ namespace projektTest
 
         private void FillCategories()
         {
-            
+
             cbx_category.Items.Clear();
             try
             {
@@ -93,7 +94,7 @@ namespace projektTest
                     cbx_category.Items.Add(czytnik["Category"].ToString());
                 }
 
-                czytnik.Close();
+                connection.Close();
 
             }
             catch

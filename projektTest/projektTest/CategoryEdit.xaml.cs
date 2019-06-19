@@ -48,7 +48,7 @@ namespace projektTest
                     lbx_category.Items.Add(czytnik["Category"].ToString());
                 }
 
-                czytnik.Close();
+                connection.Close();
 
             }
             catch
