@@ -23,5 +23,10 @@ namespace projektTest
         {
             InitializeComponent();
         }
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
