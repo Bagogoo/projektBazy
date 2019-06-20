@@ -25,12 +25,13 @@ namespace projektTest
         {
             InitializeComponent();
         }
-        public Register(SqlConnection _conn)
+     /*   public Register(SqlConnection _conn)
         {
             CenterWindowOnScreen();
             InitializeComponent();
             connection = _conn;
         }
+        */
         SqlConnection connection = new SqlConnection("Data Source=projektbazy.database.windows.net;Initial Catalog=BazaDziennik;User ID=projektbazy;Password=zaq1@WSX;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         Message message = new Message();
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
@@ -39,7 +40,7 @@ namespace projektTest
             {
                 SqlCommand polecenie = new SqlCommand("INSERT INTO Logowanie (Login,Password,Role) VALUES (@Login,@Password,@Role)", connection);
                 polecenie.Parameters.Add("@Login", System.Data.SqlDbType.VarChar).Value = tbx_username.Text;
-                polecenie.Parameters.Add("@Password", System.Data.SqlDbType.VarChar).Value = tbx_password.Text;
+                polecenie.Parameters.Add("@Password", System.Data.SqlDbType.VarChar).Value = pbx_password.Password;
                 if (cbx_role.IsChecked == true) polecenie.Parameters.Add("Role", System.Data.SqlDbType.VarChar).Value = "Parent";
                 else polecenie.Parameters.Add("@Role", System.Data.SqlDbType.VarChar).Value = "Child";
                 polecenie.CommandType = CommandType.Text;
@@ -66,6 +67,26 @@ namespace projektTest
             double windowHeight = this.Height;
             this.Left = (screenWidth / 2) - (windowWidth / 2);
             this.Top = (screenHeight / 2) - (windowHeight / 2);
+        }
+
+        private void Cbx_hidepassword_Checked(object sender, RoutedEventArgs e)
+        {
+            if (cbx_hidepassword.IsChecked == true)
+            {
+                pbx_password.Visibility = Visibility.Visible;
+                pbx_password.Height = 26;
+                tbx_password.Visibility = Visibility.Hidden;
+                tbx_password.Height = 0;
+                pbx_password.Password = tbx_password.Text;
+            }
+            else
+            {
+                pbx_password.Visibility = Visibility.Hidden;
+                pbx_password.Height = 0;
+                tbx_password.Visibility = Visibility.Visible;
+                tbx_password.Height = 26;
+                tbx_password.Text = pbx_password.Password;
+            }
         }
     }
 }
