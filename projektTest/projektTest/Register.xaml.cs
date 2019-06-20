@@ -24,14 +24,15 @@ namespace projektTest
         public Register()
         {
             InitializeComponent();
-        }
-     /*   public Register(SqlConnection _conn)
-        {
             CenterWindowOnScreen();
-            InitializeComponent();
-            connection = _conn;
         }
-        */
+        /*   public Register(SqlConnection _conn)
+           {
+               CenterWindowOnScreen();
+               InitializeComponent();
+               connection = _conn;
+           }
+           */
         SqlConnection connection = new SqlConnection("Data Source=projektbazy.database.windows.net;Initial Catalog=BazaDziennik;User ID=projektbazy;Password=zaq1@WSX;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         Message message = new Message();
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
@@ -46,7 +47,7 @@ namespace projektTest
                 polecenie.CommandType = CommandType.Text;
                 connection.Open();
                 polecenie.ExecuteNonQuery();
- 
+
 
             }
             catch
@@ -55,6 +56,7 @@ namespace projektTest
             }
             finally
             {
+                message.ShowMessage("Gratulacje", "Pomyślnie zarejestrowano", true);
                 connection.Close();
             }
             this.Close();
@@ -69,7 +71,7 @@ namespace projektTest
             this.Top = (screenHeight / 2) - (windowHeight / 2);
         }
 
-        private void Cbx_hidepassword_Checked(object sender, RoutedEventArgs e)
+        private void Cbx_hidepassword_Changed(object sender, RoutedEventArgs e)
         {
             if (cbx_hidepassword.IsChecked == true)
             {
@@ -88,5 +90,18 @@ namespace projektTest
                 tbx_password.Text = pbx_password.Password;
             }
         }
+
+        private void KeyDown_on_tbx(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.PageUp || e.Key == Key.Up) tbx_username.Focus();
+            if (e.Key == Key.PageDown || e.Key == Key.Down)
+            {
+                if (cbx_hidepassword.IsChecked == true) pbx_password.Focus();
+                else tbx_password.Focus();
+            }
+            
+            if (e.Key == Key.Escape) { tbx_username.Clear(); pbx_password.Clear(); tbx_username.Focus(); }
+        }
     }
-}
+ }
+

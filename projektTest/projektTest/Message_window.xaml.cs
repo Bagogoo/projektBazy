@@ -32,7 +32,7 @@ namespace projektTest
 
             if(type) //if type value is true, then window is normal info screen
             {
-                this.Background = Brushes.Gray;
+                this.Background = Brushes.Green;
                 tbx_info.Background = Brushes.DarkSlateGray;
                 btn_ok.Background = Brushes.DarkSlateGray;
             }

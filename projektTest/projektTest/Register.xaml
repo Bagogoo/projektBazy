@@ -9,14 +9,14 @@
     <StackPanel Margin="20">
       
         <Label Content="Username" Foreground="White" HorizontalAlignment="Center"/>
-        <TextBox Name="tbx_username" Background="#2F4F4F" FontSize="16" Foreground="White" BorderBrush="White" />
+        <TextBox Name="tbx_username" Background="#2F4F4F" FontSize="16" Foreground="White" BorderBrush="White" PreviewKeyDown="KeyDown_on_tbx" />
 
         <Label Content="Password" Foreground="White" HorizontalAlignment="Center"/>
-        <PasswordBox x:Name="pbx_password" Background="#2F4F4F" FontSize="16" Foreground="White"  BorderBrush="White" />
+        <PasswordBox x:Name="pbx_password" Background="#2F4F4F" FontSize="16" Foreground="White"  BorderBrush="White" PreviewKeyDown="KeyDown_on_tbx" />
         <TextBox  x:Name="tbx_password" Height="0" Background="#2F4F4F" FontSize="16" Foreground="White"  BorderBrush="White"  Visibility="Hidden"/>
-        <CheckBox x:Name="cbx_hidepassword" Content="Hide password" Background="#FF336666" BorderBrush="White" Foreground="White"  IsChecked="True" Margin="0,0,109,0" Checked="Cbx_hidepassword_Checked"/>
+        <CheckBox x:Name="cbx_hidepassword" Content="Hide password" Background="#FF336666" BorderBrush="White" Foreground="White"  IsChecked="True" Margin="0,0,109,0" Checked="Cbx_hidepassword_Changed" Unchecked="Cbx_hidepassword_Changed"/>
         <CheckBox x:Name="cbx_role" Content="I'm parent"  Background="#FF336666" BorderBrush="White" Foreground="White"  IsChecked="True" Margin="140,-18,-17,0"/>
-        <Button x:Name="btn_login"  BorderBrush="White" Content="Register" Margin="70 10"   Background="#2F4F4F" FontSize="16" Foreground="White" Click="BtnLogin_Click"/>
+        <Button x:Name="btn_login"  BorderBrush="White" Content="Register" Margin="70 10"   Background="#2F4F4F" FontSize="16" Foreground="White" Click="BtnLogin_Click" IsDefault="True"/>
 
     </StackPanel>
 </Window>
