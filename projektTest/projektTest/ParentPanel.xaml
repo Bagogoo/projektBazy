@@ -11,24 +11,24 @@
         <ListBox  FontSize="13" x:Name="lbx_history" HorizontalAlignment="Left" Height="532" Margin="10,29,0,0" VerticalAlignment="Top" Width="289" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
         <Label Foreground="White" Content="Historia operacji" HorizontalAlignment="Left" Margin="97,3,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbx_name" Background="#2F4F4F" FontSize="16" Foreground="White" BorderBrush="White" HorizontalAlignment="Left" Height="23" Margin="318,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="464"/>
-        <Label Foreground="White" Content="Nazwa" HorizontalAlignment="Left" Margin="307,32,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="White" Content="Nazwa" HorizontalAlignment="Left" Margin="309,32,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbx_price" Background="#2F4F4F" FontSize="16" Foreground="White" BorderBrush="White" HorizontalAlignment="Left" Height="23" Margin="318,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="377"/>
-        <Label Foreground="White" Content="Kwota" HorizontalAlignment="Left" Margin="304,86,0,0" VerticalAlignment="Top"/>
-        <Button Content="Zatwierdź" HorizontalAlignment="Left" Margin="318,282,0,0" VerticalAlignment="Top" Width="262" Background="DarkSlateGray" Foreground="White" BorderBrush="White"/>
+        <Label Foreground="White" Content="Kwota" HorizontalAlignment="Left" Margin="309,86,0,0" VerticalAlignment="Top"/>
+        <Button Content="Zatwierdź" HorizontalAlignment="Left" Margin="318,284,0,0" VerticalAlignment="Top" Width="262" Background="DarkSlateGray" Foreground="White" BorderBrush="White"/>
         <Label Foreground="White" Content="Saldo:" HorizontalAlignment="Left" Margin="307,329,0,0" VerticalAlignment="Top"/>
         <Label Foreground="White" x:Name="lbl_saldo" Content="---" HorizontalAlignment="Left" Margin="379,329,0,0" VerticalAlignment="Top"/>
         <Label Foreground="White" Content="Wydatki:" HorizontalAlignment="Left" Margin="307,355,0,0" VerticalAlignment="Top"/>
         <Label Foreground="White" x:Name="lbl_expenses" Content="---" HorizontalAlignment="Left" Margin="379,355,0,0" VerticalAlignment="Top"/>
         <Label Foreground="White" Content="Przychody:" HorizontalAlignment="Left" Margin="307,381,0,0" VerticalAlignment="Top"/>
         <Label Foreground="White" x:Name="lbl_revenues" Content="---" HorizontalAlignment="Left" Margin="379,381,0,0" VerticalAlignment="Top"/>
-        <Calendar x:Name="cal_calendar" HorizontalAlignment="Left" Margin="596,143,0,0" VerticalAlignment="Top" Background="#FF00B4B4" BorderBrush="White" Foreground="White"/>
+        <Calendar x:Name="cal_calendar" HorizontalAlignment="Left" Margin="596,141,0,0" VerticalAlignment="Top" Background="#FF00B4B4" BorderBrush="White" Foreground="White" Height="173"/>
         <ComboBox x:Name="cbx_category" HorizontalAlignment="Left" Margin="318,172,0,0" VerticalAlignment="Top" Width="236" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
-        <Label Foreground="White" Content="Kategoria" HorizontalAlignment="Left" Margin="304,141,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="White" Content="Kategoria" HorizontalAlignment="Left" Margin="309,141,0,0" VerticalAlignment="Top"/>
         <CheckBox Content="Przelew do bajtla" HorizontalAlignment="Left" Margin="397,220,0,0" VerticalAlignment="Top" Background="#FF428383" BorderBrush="White" Foreground="White"/>
         <ComboBox x:Name="cbx_childPay" HorizontalAlignment="Left" Margin="318,240,0,0" VerticalAlignment="Top" Width="262" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
         <RadioButton x:Name="rbtn_payin" Content="Przychód" HorizontalAlignment="Left" Margin="700,111,0,0" VerticalAlignment="Top" Background="#FF428383" BorderBrush="White" Foreground="White"/>
         <RadioButton IsChecked="True" x:Name="rbtn_payout" Content="Odchód" HorizontalAlignment="Left" Margin="700,126,0,0" VerticalAlignment="Top" Background="#FF428383" BorderBrush="White" Foreground="White"/>
         <Label Foreground="White" Content="Nowy wydatek" HorizontalAlignment="Left" Margin="499,3,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_Categories" Content="+/-" HorizontalAlignment="Left" Margin="559,172,0,0" VerticalAlignment="Top" Width="21" Background="DarkSlateGray" Foreground="White" BorderBrush="White" Click="Btn_Categories_Click"/>
+        <Button x:Name="btn_Categories" Content="+/-" HorizontalAlignment="Left" Margin="559,172,0,0" VerticalAlignment="Top" Width="21" Background="DarkSlateGray" Foreground="White" BorderBrush="White" Click="Btn_Categories_Click" Height="22"/>
     </Grid>
 </Window>
