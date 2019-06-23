@@ -142,7 +142,7 @@ namespace projektTest
                     if (login == "Kujo" && password == "Jotaro") btn_login.Content = "Nani?!";
                     else message.ShowMessage("Nie udało się zalogować", "Podano niepoprawny login lub hasło.", false);
                 }
-               // connection.Close();
+                connection.Close();
             }
             catch
             {

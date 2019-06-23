@@ -71,11 +71,16 @@ namespace projektTest
             }
 
             this.Title = "Bajtel mode(" + id_user + "/" + id_account + "): " + login + "     |     " + haslo + "     |     " + rola;
-            
+            connection.Close();
+
+
+
             LoadCategories();
             RefreshOperationHistory();
             RefreshCreditsInfo();
 
+
+            connection.Open();
             //odczytywanie identyfikatora konta dla identyfikatora użytkowanika
             SqlCommand polecenie2 = new SqlCommand("SELECT ID_ACCOUNT FROM Account WHERE ID_USER=@id", connection);
             polecenie2.Parameters.Add("id", System.Data.SqlDbType.Int).Value = id_user;

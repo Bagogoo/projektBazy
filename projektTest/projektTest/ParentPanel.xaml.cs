@@ -86,12 +86,13 @@ namespace projektTest
             {
                 connection.Open();
 
-                SqlCommand polecenie = new SqlCommand("SELECT Category FROM Categories", connection);
+                SqlCommand polecenie = new SqlCommand("SELECT * FROM Categories", connection);
                 SqlDataReader czytnik = polecenie.ExecuteReader();
 
                 while (czytnik.Read())
                 {
                     cbx_category.Items.Add(czytnik["Category"].ToString());
+                    message.ShowMessage("Dodano", czytnik["Category"].ToString(), true);
                 }
 
                 connection.Close();
