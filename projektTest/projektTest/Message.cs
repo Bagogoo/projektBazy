@@ -12,6 +12,7 @@ namespace projektTest
         {
             Message_window window = new Message_window(head, body, type);
             window.ShowDialog();
+
         }
     }
 }
