@@ -165,7 +165,7 @@
         <Rectangle Fill="Black" HorizontalAlignment="Left" Height="214" Margin="10,576,0,0" Stroke="Lime" VerticalAlignment="Top" Width="774"/>
         <Label Content="Insert command to server" HorizontalAlignment="Left" Margin="308,576,0,0" VerticalAlignment="Top" Foreground="Lime"/>
         <Button x:Name="btn_sendCommand" Content="Submit" HorizontalAlignment="Left" Margin="699,604,0,0" VerticalAlignment="Top" Width="75" Height="23" PreviewKeyDown="Btn_sendCommand_PreviewKeyDown" Click="Btn_sendCommand_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
-        <TextBox x:Name="tbx_command" HorizontalAlignment="Left" Height="23" Margin="20,604,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="674" Foreground="Lime" SelectionBrush="#FF008300" BorderBrush="Lime" Background="Black"/>
+        <TextBox x:Name="tbx_command" HorizontalAlignment="Left" Height="23" Margin="20,604,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="674" Foreground="Lime" SelectionBrush="#FF008300" BorderBrush="Lime" Background="Black" PreviewKeyDown="Btn_sendCommand_PreviewKeyDown"/>
         <RichTextBox x:Name="rtbx_dial" HorizontalAlignment="Left" Height="149" Margin="20,632,0,0" VerticalAlignment="Top" Width="754" Background="Black" BorderBrush="Lime" Foreground="Lime" SelectionBrush="#FF007400" IsReadOnly="True">
             <RichTextBox.Resources>
                 <Style TargetType="{x:Type Paragraph}">

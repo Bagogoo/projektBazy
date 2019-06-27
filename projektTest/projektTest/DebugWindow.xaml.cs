@@ -326,6 +326,10 @@ namespace projektTest
                 {
                     rtbx_dial.Document.Blocks.Clear();
                 }
+                else if (tbx_command.Text == "#CLOSE")
+                {
+                    this.Close();
+                }
                 else
                 {
                     connection.Open();
@@ -350,6 +354,7 @@ namespace projektTest
             catch
             {
                 message.ShowMessage("Error", "Błąd podczas wysyłania polecenia.", "error");
+                connection.Close();
             }
         }
 
@@ -362,5 +367,6 @@ namespace projektTest
         {
             this.Close();
         }
+
     }
 }
