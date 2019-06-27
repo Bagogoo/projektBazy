@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Xml.Serialization;
+using System.Reflection;
 
 namespace projektTest
 {
@@ -26,17 +27,30 @@ namespace projektTest
         public DebugWindow()
         {
             InitializeComponent();
+            FillBrushes();
         }
 
         public DebugWindow(SqlConnection con)
         {
             InitializeComponent();
+            FillBrushes();
             connection = con;
         }
 
         Message message = new Message();
         SqlConnection connection;
         string loaded;
+
+        private void FillBrushes()
+        {
+            foreach (PropertyInfo prop in typeof(Brushes).GetProperties())
+                cbx_bg.Items.Add(prop.Name);
+            foreach (PropertyInfo prop in typeof(Brushes).GetProperties())
+                cbx_btn.Items.Add(prop.Name);
+            foreach (PropertyInfo prop in typeof(Brushes).GetProperties())
+                cbx_tbx.Items.Add(prop.Name);
+        }
+
 
         private void Btn_fillLogowanie_Click(object sender, RoutedEventArgs e)
         {
@@ -252,22 +266,31 @@ namespace projektTest
 
         private void Btn_testmbxMessage_Click(object sender, RoutedEventArgs e)
         {
-            message.ShowMessage("TEST", "test is not real confirmation with imagination, becouse its onlu test :)" + loaded, "message");
+            message.ShowMessage("TEST", "test is not real confirmation with imagination, becouse its onlu test :)", "message");
         }
 
         private void Btn_testmbxFail_Click(object sender, RoutedEventArgs e)
         {
-            message.ShowMessage("TEST", "test is not real confirmation with imagination, becouse its onlu test :)" + loaded, "error");
+            message.ShowMessage("TEST", "test is not real confirmation with imagination, becouse its onlu test :)", "error");
         }
 
         private void Btn_testmbxSucces_Click(object sender, RoutedEventArgs e)
         {
-            message.ShowMessage("TEST", "test is not real confirmation with imagination, becouse its onlu test :)" + loaded, "succes");
+            message.ShowMessage("TEST", "test is not real confirmation with imagination, becouse its onlu test :)", "succes");
         }
 
         private void Btn_testmbxUser_Click(object sender, RoutedEventArgs e)
         {
-            message.ShowMessage("TEST", "test is not real confirmation with imagination, becouse its onlu test :)" + loaded, "message");
+            PropertyInfo _bg = typeof(Brushes).GetProperty(cbx_bg.SelectedItem.ToString());
+            Brush bg = (Brush)_bg.GetValue(null, null);
+
+            PropertyInfo _tbx = typeof(Brushes).GetProperty(cbx_tbx.SelectedItem.ToString());
+            Brush tbx = (Brush)_tbx.GetValue(null, null);
+
+            PropertyInfo _btn = typeof(Brushes).GetProperty(cbx_btn.SelectedItem.ToString());
+            Brush btn = (Brush)_btn.GetValue(null, null);
+
+            message.ShowMessage("TEST", "test is not real confirmation with imagination, becouse its onlu test :)",bg, tbx, btn );
         }
     }
 }

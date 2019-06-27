@@ -39,8 +39,8 @@ namespace projektTest
             else if (type == "message")
             {
                 this.Background = Brushes.Gray;
-                tbx_info.Background = Brushes.DarkSlateGray;
-                btn_ok.Background = Brushes.DarkSlateGray;
+                tbx_info.Background = Brushes.DarkGray;
+                btn_ok.Background = Brushes.DarkGray;
             }
             else if (type == "succes")
             {

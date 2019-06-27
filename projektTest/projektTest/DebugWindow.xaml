@@ -28,9 +28,9 @@
         <ComboBox x:Name="cbx_bg" HorizontalAlignment="Left" Margin="597,507,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="cbx_tbx" HorizontalAlignment="Left" Margin="597,534,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="cbx_btn" HorizontalAlignment="Left" Margin="597,480,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="background" HorizontalAlignment="Left" Margin="518,480,0,0" VerticalAlignment="Top"/>
-        <Label Content="Textbox" HorizontalAlignment="Left" Margin="541,505,0,0" VerticalAlignment="Top"/>
-        <Label Content="Button" HorizontalAlignment="Left" Margin="546,532,0,0" VerticalAlignment="Top"/>
+        <Label Content="background" HorizontalAlignment="Left" Margin="518,503,0,0" VerticalAlignment="Top"/>
+        <Label Content="Textbox" HorizontalAlignment="Left" Margin="545,530,0,0" VerticalAlignment="Top"/>
+        <Label Content="Button" HorizontalAlignment="Left" Margin="551,479,0,0" VerticalAlignment="Top"/>
 
 
 
