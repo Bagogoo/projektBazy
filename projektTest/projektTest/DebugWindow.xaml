@@ -5,28 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:projektTest"
         mc:Ignorable="d"
-        Title="DebugWindow" Height="616" Width="808" ResizeMode="NoResize">
+        Title="DebugWindow" Height="800" Width="800" ResizeMode="NoResize" WindowStyle="None">
     <Grid Background="Black">
 
 
 
-        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="60" Margin="466,411,0,0" Stroke="Lime" VerticalAlignment="Top" Width="315"/>
-        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="60" Margin="10,411,0,0" Stroke="Lime" VerticalAlignment="Top" Width="416"/>
+        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="60" Margin="441,411,0,0" Stroke="Lime" VerticalAlignment="Top" Width="308"/>
+        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="60" Margin="10,411,0,0" Stroke="Lime" VerticalAlignment="Top" Width="426"/>
         <ListBox x:Name="lbx_contener" HorizontalAlignment="Left" Height="396" Margin="10,10,0,0" VerticalAlignment="Top" Width="774" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
         <Button x:Name="btn_fillLogowanie" Content="Logowanie" HorizontalAlignment="Left" Margin="30,442,0,0" VerticalAlignment="Top" Width="75" Click="Btn_fillLogowanie_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
         <Button x:Name="btn_fillAccount" Content="Account" HorizontalAlignment="Left" Margin="123,442,0,0" VerticalAlignment="Top" Width="75" Click="Btn_fillAccount_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
         <Button x:Name="btn_fillOperation" Content="Operation" HorizontalAlignment="Left" Margin="225,442,0,0" VerticalAlignment="Top" Width="75" Click="Btn_fillOperation_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
-        <Button x:Name="btn_fillCategories" Content="Categories" HorizontalAlignment="Left" Margin="323,442,0,0" VerticalAlignment="Top" Width="75" Click="Btn_fillCategories_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
-        <Button x:Name="btn_operationClear" Content="Clear table" HorizontalAlignment="Left" Margin="478,442,0,0" VerticalAlignment="Top" Width="143" Click="Btn_operationClear_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
-        <Button x:Name="btn_operationRemove" Content="Remove item" HorizontalAlignment="Left" Margin="626,442,0,0" VerticalAlignment="Top" Width="134" Click="Btn_operationRemove_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
+        <Button x:Name="btn_fillCategories" Content="Categories" HorizontalAlignment="Left" Margin="330,442,0,0" VerticalAlignment="Top" Width="75" Click="Btn_fillCategories_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
+        <Button x:Name="btn_operationClear" Content="Clear table" HorizontalAlignment="Left" Margin="453,442,0,0" VerticalAlignment="Top" Width="143" Click="Btn_operationClear_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
+        <Button x:Name="btn_operationRemove" Content="Remove item" HorizontalAlignment="Left" Margin="601,442,0,0" VerticalAlignment="Top" Width="134" Click="Btn_operationRemove_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
 
 
 
         <Label Content="Show content" HorizontalAlignment="Left" Margin="179,411,0,0" VerticalAlignment="Top" Foreground="Lime"/>
-        <Label Content="Operation" HorizontalAlignment="Left" Margin="577,411,0,0" VerticalAlignment="Top" Foreground="Lime"/>
+        <Label Content="Operation" HorizontalAlignment="Left" Margin="552,411,0,0" VerticalAlignment="Top" Foreground="Lime"/>
         <Label Content="Messagebox test" HorizontalAlignment="Left" Margin="355,476,0,0" VerticalAlignment="Top" Foreground="Lime"/>
 
-        <TabControl HorizontalAlignment="Left" Height="81" Margin="10,480,0,0" VerticalAlignment="Top" Width="766" Background="Black" Foreground="Lime" BorderBrush="Lime">
+        <TabControl HorizontalAlignment="Left" Height="81" Margin="10,480,0,0" VerticalAlignment="Top" Width="774" Background="Black" Foreground="Lime" BorderBrush="Lime" SelectionChanged="TabControl_SelectionChanged">
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
@@ -56,7 +56,7 @@
                 <Grid Background="Black">
                     <Button x:Name="btn_testmbxMessage" Content="message" HorizontalAlignment="Left" Margin="10,10,0,10" Width="240" Click="Btn_testmbxMessage_Click" Background="Black" BorderBrush="Lime" Foreground="#FF0CFF00"/>
                     <Button x:Name="btn_testmbxSucces" Content="succes" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top" Width="241" Click="Btn_testmbxSucces_Click" Background="Black" BorderBrush="Lime" Foreground="#FF0CFF00" Height="33"/>
-                    <Button x:Name="btn_testmbxFail" Content="fail" HorizontalAlignment="Left" Margin="501,10,0,0" VerticalAlignment="Top" Width="249" Click="Btn_testmbxFail_Click" Background="Black" BorderBrush="Lime" Foreground="#FF0CFF00" Height="33"/>
+                    <Button x:Name="btn_testmbxFail" Content="fail" HorizontalAlignment="Left" Margin="501,10,0,0" VerticalAlignment="Top" Width="257" Click="Btn_testmbxFail_Click" Background="Black" BorderBrush="Lime" Foreground="#FF0CFF00" Height="33"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Custom" Background="Black" BorderBrush="Lime" Foreground="Lime">
@@ -133,7 +133,7 @@
                     <Label Content="Background"  Foreground="Lime" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                     <Label Content="Textbox" Foreground="Lime" HorizontalAlignment="Left" Margin="135,0,0,0" VerticalAlignment="Top"/>
                     <Label Content="Button" Foreground="Lime" HorizontalAlignment="Left" Margin="260,0,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="btn_testmbxUser" Content="user" HorizontalAlignment="Left" Margin="510,1,0,-1" VerticalAlignment="Top" Width="250" Click="Btn_testmbxUser_Click" Height="52" Background="Black" BorderBrush="Lime" Foreground="#FF0CFF00"/>
+                    <Button x:Name="btn_testmbxUser" Content="user" HorizontalAlignment="Left" Margin="510,1,0,-1" VerticalAlignment="Top" Width="258" Click="Btn_testmbxUser_Click" Height="52" Background="Black" BorderBrush="Lime" Foreground="#FF0CFF00"/>
                     <ComboBox x:Name="cbx_txt" HorizontalAlignment="Left" Margin="385,22,0,0" VerticalAlignment="Top" Width="120">
                         <ComboBox.Resources>
                             <!-- Colour of ComboBoxItem -->
@@ -162,6 +162,18 @@
             </TabItem>
         </TabControl>
 
+        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="214" Margin="10,576,0,0" Stroke="Lime" VerticalAlignment="Top" Width="774"/>
+        <Label Content="Insert command to server" HorizontalAlignment="Left" Margin="308,576,0,0" VerticalAlignment="Top" Foreground="Lime"/>
+        <Button x:Name="btn_sendCommand" Content="Submit" HorizontalAlignment="Left" Margin="699,604,0,0" VerticalAlignment="Top" Width="75" Height="23" PreviewKeyDown="Btn_sendCommand_PreviewKeyDown" Click="Btn_sendCommand_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
+        <TextBox x:Name="tbx_command" HorizontalAlignment="Left" Height="23" Margin="20,604,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="674" Foreground="Lime" SelectionBrush="#FF008300" BorderBrush="Lime" Background="Black"/>
+        <RichTextBox x:Name="rtbx_dial" HorizontalAlignment="Left" Height="149" Margin="20,632,0,0" VerticalAlignment="Top" Width="754" Background="Black" BorderBrush="Lime" Foreground="Lime" SelectionBrush="#FF007400" IsReadOnly="True">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+        <Button x:Name="btn_close" Content="Close" HorizontalAlignment="Left" Margin="754,411,0,0" VerticalAlignment="Top" Width="36" Click="Btn_close_Click"  Background="Black" BorderBrush="Lime" Foreground="Lime" Height="60"/>
 
 
     </Grid>

@@ -310,5 +310,57 @@ namespace projektTest
 
             message.ShowMessage("TEST", "test is not real confirmation with imagination, becouse its onlu test :)",bg, tbx, btn, txt);
         }
+
+        private void Btn_sendCommand_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return) Btn_sendCommand_Click(sender, e);
+        }
+
+        private void Btn_sendCommand_Click(object sender, RoutedEventArgs e)
+        {
+            rtbx_dial.Document.Blocks.Clear();
+
+            try
+            {
+                if (tbx_command.Text == "#CLEAR")
+                {
+                    rtbx_dial.Document.Blocks.Clear();
+                }
+                else
+                {
+                    connection.Open();
+                    SqlCommand sql_command = new SqlCommand(tbx_command.Text, connection);
+                    SqlDataReader czytnik = sql_command.ExecuteReader();
+
+                    int count = czytnik.FieldCount;
+                    while (czytnik.Read())
+                    {
+                        for (int i = 0; i < count; i++)
+                        {
+                            rtbx_dial.AppendText(czytnik.GetValue(i).ToString() + " ");
+                        }
+                        rtbx_dial.AppendText(Environment.NewLine);
+                    }
+
+                    connection.Close();
+                }
+                tbx_command.Clear();
+                tbx_command.Focus();
+            }
+            catch
+            {
+                message.ShowMessage("Error", "Błąd podczas wysyłania polecenia.", "error");
+            }
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Btn_close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
