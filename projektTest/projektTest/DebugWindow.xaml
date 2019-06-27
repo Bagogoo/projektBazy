@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:projektTest"
         mc:Ignorable="d"
-        Title="DebugWindow" Height="800" Width="800" ResizeMode="NoResize" WindowStyle="None">
+        Title="DebugWindow" Height="800" Width="800" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid Background="Black">
 
 
