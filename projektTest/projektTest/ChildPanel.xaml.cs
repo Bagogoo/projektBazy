@@ -26,6 +26,7 @@ namespace projektTest
         {
             InitializeComponent();
             CenterWindowOnScreen();
+            FillCategories();
         }
 
         public ChildPanel(int _id, SqlConnection _conn)
@@ -35,6 +36,7 @@ namespace projektTest
             id_user = _id;
             connection = _conn;
             Initialization();
+            FillCategories();
         }
 
         //centrowanie okna na ekranie
@@ -51,8 +53,7 @@ namespace projektTest
         int id_user = 0;
         int id_account = 0;
         SqlConnection connection;
-        List<Category> categories = new List<Category>();
-
+        Message message = new Message();
 
         private void Initialization()
         {
@@ -74,8 +75,6 @@ namespace projektTest
             connection.Close();
 
 
-
-            LoadCategories();
             RefreshOperationHistory();
             RefreshCreditsInfo();
 
@@ -91,40 +90,6 @@ namespace projektTest
                 id_account = (int)czytnik["ID_ACCOUNT"];
             }
             connection.Close();
-        }
-
-        private void LoadCategories()
-        {
-            string path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string path_directory = path + @"\FamilyCrDatabase";
-            path += @"\FamilyCrDatabase\Categories.xml";
-
-
-
-
-            if (File.Exists(path))
-            {
-                FileStream str = new FileStream(path, FileMode.Open);
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Category>));
-
-                List<Category> tmp = (List<Category>)serializer.Deserialize(str);
-                str.Close();
-
-                foreach (Category val in tmp) cbx_category.Items.Add(val.get_category());
-            }
-            else
-            {
-                MessageBox.Show("Brak pliku z kategoriami!");
-                if (!Directory.Exists(path_directory))
-                {
-                    Directory.CreateDirectory(path_directory);
-                }
-                FileStream str = new FileStream(path, FileMode.Create);
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Category>));
-
-                serializer.Serialize(str, categories);
-                str.Close();
-            }
         }
 
         private void RefreshOperationHistory()
@@ -215,6 +180,31 @@ namespace projektTest
         {
             CategoryEdit window = new CategoryEdit(connection);
             window.ShowDialog();
+        }
+
+        private void FillCategories()
+        {
+
+            cbx_category.Items.Clear();
+            try
+            {
+                connection.Open();
+
+                SqlCommand polecenie = new SqlCommand("SELECT Category FROM Categories", connection);
+                SqlDataReader czytnik = polecenie.ExecuteReader();
+
+                while (czytnik.Read())
+                {
+                    cbx_category.Items.Add(czytnik["Category"].ToString());
+                }
+
+                connection.Close();
+
+            }
+            catch
+            {
+                message.ShowMessage("Błąd", "Podczas pobierania listy kategorii z serwera wystąpił nagły błąd.", "error");
+            }
         }
     }
 }

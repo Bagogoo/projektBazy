@@ -26,15 +26,26 @@ namespace projektTest
         {
             connection = _con;
             InitializeComponent();
-            ReadFromFile();
-            RefreshListbox();
+            ReadData();
+            CenterWindowOnScreen();
         }
 
-        List<Category> categories = new List<Category>();
         SqlConnection connection;
         Message message = new Message();
 
-        private void ReadFromFile()
+
+        //centrowanie okna na ekranie
+        private void CenterWindowOnScreen()
+        {
+            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double windowWidth = this.Width;
+            double windowHeight = this.Height;
+            this.Left = (screenWidth / 2) - (windowWidth / 2);
+            this.Top = (screenHeight / 2) - (windowHeight / 2);
+        }
+
+        private void ReadData()
         {
             try
             {
@@ -49,32 +60,23 @@ namespace projektTest
                 }
 
                 connection.Close();
-
             }
             catch
             {
-                message.ShowMessage("Błąd", "Podczas pobierania listy kategorii z serwera wystąpił nagły błąd.", false);
+                message.ShowMessage("Błąd", "Podczas pobierania listy kategorii z serwera wystąpił nagły błąd.", "error");
             }
-        }
-
-        private void RefreshListbox()
-        {
-            lbx_category.Items.Clear();
-            foreach (var val in categories) lbx_category.Items.Add(val.get_category());
         }
 
         private void Btn_addNewCategory_Click(object sender, RoutedEventArgs e)
         {
-            if(tbx_categoryName.Text != "") categories.Add(new Category(tbx_categoryName.Text));
+            if(tbx_categoryName.Text != "") lbx_category.Items.Add(tbx_categoryName.Text);
             tbx_categoryName.Clear();
             tbx_categoryName.Focus();
-            RefreshListbox();
         }
 
         private void Btn_removeCategory_Click(object sender, RoutedEventArgs e)
         {
-            if(lbx_category.SelectedIndex != -1) categories.RemoveAt(lbx_category.SelectedIndex);
-            RefreshListbox();
+            if (lbx_category.SelectedIndex != -1) lbx_category.Items.Remove(lbx_category.SelectedItem);
         }
 
         private void Btn_save_Click(object sender, RoutedEventArgs e)
@@ -86,19 +88,19 @@ namespace projektTest
                 SqlCommand sql_command_clear = new SqlCommand("DELETE FROM Categories", connection);
                 sql_command_clear.ExecuteNonQuery();
 
-                foreach (var val in lbx_category.Items.ToString())
+                for (int clk = 0; clk < lbx_category.Items.Count; clk++)
                 {
-                    SqlCommand sql_add_command = new SqlCommand("INSERT INTO Categories('Category') VALUES(@tmp_val)", connection);
-                    sql_add_command.Parameters.Add("tmp_val", System.Data.SqlDbType.VarChar).Value = val;
+                    SqlCommand sql_add_command = new SqlCommand("INSERT INTO Categories(Category) VALUES(@tmp_val)", connection);
+                    sql_add_command.Parameters.Add("tmp_val", System.Data.SqlDbType.VarChar).Value = lbx_category.Items[clk].ToString();
                     sql_add_command.ExecuteNonQuery();
                 }
 
                 connection.Close();
-                message.ShowMessage("Powodzenie", "Zapisano wprowadzone zmiany", true);
+                message.ShowMessage("Powodzenie", "Zapisano wprowadzone zmiany", "succes");
             }
             catch
             {
-                message.ShowMessage("Błąd", "Podczas zapisywania kategorii na serwerze.", false);
+                message.ShowMessage("Błąd", "Podczas zapisywania kategorii na serwerze.", "error");
             }
             this.Close();
         }

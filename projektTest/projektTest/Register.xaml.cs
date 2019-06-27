@@ -52,11 +52,11 @@ namespace projektTest
             }
             catch
             {
-                message.ShowMessage("Błąd", "Podczas połączenia z serwerem", false);
+                message.ShowMessage("Błąd", "Podczas połączenia z serwerem", "error");
             }
             finally
             {
-                message.ShowMessage("Gratulacje", "Pomyślnie zarejestrowano", true);
+                message.ShowMessage("Gratulacje", "Pomyślnie zarejestrowano", "succes");
                 connection.Close();
             }
             this.Close();
