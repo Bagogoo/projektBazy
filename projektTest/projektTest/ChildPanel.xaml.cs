@@ -57,6 +57,7 @@ namespace projektTest
 
         private void Initialization()
         {
+            cal_calendar.SelectedDate = DateTime.Now.Date;
             //ustawianie nagłówka okna
             connection.Open();
             string login = "", haslo = "", rola = "";
@@ -167,6 +168,9 @@ namespace projektTest
             RefreshOperationHistory();
             RefreshCreditsInfo();
             ClearFields();
+            cal_calendar.SelectedDate = DateTime.Now.Date;
+
+
         }
 
         private void ClearFields()

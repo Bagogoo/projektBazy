@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:projektTest"
         mc:Ignorable="d"
-        Title="CategoryEdit" Height="413.445" Width="700.42" WindowStartupLocation="Manual" ResizeMode="NoResize" WindowStyle="None">
+        Title="CategoryEdit" Height="413.445" Width="700.42" WindowStartupLocation="Manual" ResizeMode="NoResize" WindowStyle="None" MouseDown="Window_MouseDown">
     <Grid Background="#FF336666">
         <ListBox x:Name="lbx_category" HorizontalAlignment="Left" Height="337" Margin="10,43,0,0" VerticalAlignment="Top" Width="683" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
         <Button x:Name="btn_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="384,385,0,0" VerticalAlignment="Top" Width="309" Click="Btn_cancel_Click" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>

@@ -1,0 +1,38 @@
+﻿<Window x:Class="projektTest.DebugWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:projektTest"
+        mc:Ignorable="d"
+        Title="DebugWindow" Height="600" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="60" Margin="466,411,0,0" Stroke="Black" VerticalAlignment="Top" Width="315"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="60" Margin="10,411,0,0" Stroke="Black" VerticalAlignment="Top" Width="416"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="10,476,0,0" Stroke="Black" VerticalAlignment="Top" Width="771"/>
+        <ListBox x:Name="lbx_contener" HorizontalAlignment="Left" Height="396" Margin="10,10,0,0" VerticalAlignment="Top" Width="774"/>
+        <Button x:Name="btn_fillLogowanie" Content="Logowanie" HorizontalAlignment="Left" Margin="30,442,0,0" VerticalAlignment="Top" Width="75" Click="Btn_fillLogowanie_Click"/>
+        <Button x:Name="btn_fillAccount" Content="Account" HorizontalAlignment="Left" Margin="123,442,0,0" VerticalAlignment="Top" Width="75" Click="Btn_fillAccount_Click"/>
+        <Button x:Name="btn_fillOperation" Content="Operation" HorizontalAlignment="Left" Margin="225,442,0,0" VerticalAlignment="Top" Width="75" Click="Btn_fillOperation_Click"/>
+        <Button x:Name="btn_fillCategories" Content="Categories" HorizontalAlignment="Left" Margin="323,442,0,0" VerticalAlignment="Top" Width="75" Click="Btn_fillCategories_Click"/>
+        <Button x:Name="btn_operationClear" Content="Clear table" HorizontalAlignment="Left" Margin="478,442,0,0" VerticalAlignment="Top" Width="143" Click="Btn_operationClear_Click"/>
+        <Button x:Name="btn_operationRemove" Content="Remove item" HorizontalAlignment="Left" Margin="626,442,0,0" VerticalAlignment="Top" Width="134" Click="Btn_operationRemove_Click"/>
+        <Button x:Name="btn_testmbxMessage" Content="message" HorizontalAlignment="Left" Margin="30,526,0,0" VerticalAlignment="Top" Width="158" Click="Btn_testmbxMessage_Click"/>
+        <Button x:Name="btn_testmbxSucces" Content="succes" HorizontalAlignment="Left" Margin="193,526,0,0" VerticalAlignment="Top" Width="241" Click="Btn_testmbxSucces_Click"/>
+        <Button x:Name="btn_testmbxFail" Content="fail" HorizontalAlignment="Left" Margin="123,501,0,0" VerticalAlignment="Top" Width="153" Click="Btn_testmbxFail_Click"/>
+        <Button x:Name="btn_testmbxUser" Content="user" HorizontalAlignment="Left" Margin="722,480,0,0" VerticalAlignment="Top" Width="54" Click="Btn_testmbxUser_Click" Height="76"/>
+
+        <Label Content="Show content" HorizontalAlignment="Left" Margin="179,411,0,0" VerticalAlignment="Top"/>
+        <Label Content="Operation" HorizontalAlignment="Left" Margin="577,411,0,0" VerticalAlignment="Top"/>
+        <Label Content="Messagebox test" HorizontalAlignment="Left" Margin="355,476,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbx_bg" HorizontalAlignment="Left" Margin="597,507,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cbx_tbx" HorizontalAlignment="Left" Margin="597,534,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cbx_btn" HorizontalAlignment="Left" Margin="597,480,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="background" HorizontalAlignment="Left" Margin="518,480,0,0" VerticalAlignment="Top"/>
+        <Label Content="Textbox" HorizontalAlignment="Left" Margin="541,505,0,0" VerticalAlignment="Top"/>
+        <Label Content="Button" HorizontalAlignment="Left" Margin="546,532,0,0" VerticalAlignment="Top"/>
+
+
+
+    </Grid>
+</Window>

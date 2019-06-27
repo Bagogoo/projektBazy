@@ -140,6 +140,13 @@ namespace projektTest
                 else
                 {
                     if (login == "Kujo" && password == "Jotaro") btn_login.Content = "Nani?!";
+                    if (login == "marvin")
+                    {
+                        DebugWindow debwin = new DebugWindow(connection);
+                        this.Hide();
+                        debwin.ShowDialog();
+                        this.Show();
+                    }
                     else message.ShowMessage("Nie udało się zalogować", "Podano niepoprawny login lub hasło.", "error");
                 }
                 connection.Close();
