@@ -26,9 +26,9 @@ namespace projektTest
             Message_window window = new Message_window(head, body, type);
             window.ShowDialog();
         }
-        public void ShowMessage(string head, string body, Brush bg, Brush tbx, Brush btn)
+        public void ShowMessage(string head, string body, Brush bg, Brush tbx, Brush btn, Brush txt)
         {
-            Message_window window = new Message_window(head, body, bg, tbx, btn);
+            Message_window window = new Message_window(head, body, bg, tbx, btn, txt);
             window.ShowDialog();
         }
     }

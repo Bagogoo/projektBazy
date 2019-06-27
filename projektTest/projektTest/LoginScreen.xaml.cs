@@ -146,6 +146,7 @@ namespace projektTest
                         this.Hide();
                         debwin.ShowDialog();
                         this.Show();
+                        ClearFields();
                     }
                     else message.ShowMessage("Nie udało się zalogować", "Podano niepoprawny login lub hasło.", "error");
                 }

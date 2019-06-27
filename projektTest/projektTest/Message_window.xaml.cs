@@ -50,15 +50,20 @@ namespace projektTest
             }
         }
 
-        public Message_window(string header, string body, Brush bg, Brush tbx, Brush btn)
+        public Message_window(string header, string body, Brush bg, Brush tbx, Brush btn, Brush txt)
         {
             InitializeComponent();
             lbl_info.Content = header;
             tbx_info.Text = body;
 
-                this.Background = bg;
-                tbx_info.Background = tbx;
-                btn_ok.Background = btn;
+            this.Background = bg;
+            tbx_info.Background = tbx;
+            btn_ok.Background = btn;
+            lbl_info.Foreground = txt;
+            tbx_info.Foreground = txt;
+            tbx_info.BorderBrush = txt;
+            btn_ok.Foreground = txt;
+            btn_ok.BorderBrush = txt;
         }
 
         private void Btn_ok_Click(object sender, RoutedEventArgs e)

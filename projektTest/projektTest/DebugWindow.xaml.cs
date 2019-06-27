@@ -43,12 +43,17 @@ namespace projektTest
 
         private void FillBrushes()
         {
-            foreach (PropertyInfo prop in typeof(Brushes).GetProperties())
-                cbx_bg.Items.Add(prop.Name);
-            foreach (PropertyInfo prop in typeof(Brushes).GetProperties())
-                cbx_btn.Items.Add(prop.Name);
-            foreach (PropertyInfo prop in typeof(Brushes).GetProperties())
-                cbx_tbx.Items.Add(prop.Name);
+            //foreach (PropertyInfo prop in typeof(Brushes).GetProperties())
+            //    cbx_bg.Items.Add(prop.Name);
+            //foreach (PropertyInfo prop in typeof(Brushes).GetProperties())
+            //    cbx_btn.Items.Add(prop.Name);
+            //foreach (PropertyInfo prop in typeof(Brushes).GetProperties())
+            //    cbx_tbx.Items.Add(prop.Name);
+
+            cbx_bg.ItemsSource = typeof(Colors).GetProperties();
+            cbx_btn.ItemsSource = typeof(Colors).GetProperties();
+            cbx_tbx.ItemsSource = typeof(Colors).GetProperties();
+            cbx_txt.ItemsSource = typeof(Colors).GetProperties();
         }
 
 
@@ -281,16 +286,29 @@ namespace projektTest
 
         private void Btn_testmbxUser_Click(object sender, RoutedEventArgs e)
         {
-            PropertyInfo _bg = typeof(Brushes).GetProperty(cbx_bg.SelectedItem.ToString());
-            Brush bg = (Brush)_bg.GetValue(null, null);
+            //PropertyInfo _bg = typeof(Brushes).GetProperty(cbx_bg.SelectedItem.ToString());
+            //Brush bg = (Brush)_bg.GetValue(null, null);
 
-            PropertyInfo _tbx = typeof(Brushes).GetProperty(cbx_tbx.SelectedItem.ToString());
-            Brush tbx = (Brush)_tbx.GetValue(null, null);
+            //PropertyInfo _tbx = typeof(Brushes).GetProperty(cbx_tbx.SelectedItem.ToString());
+            //Brush tbx = (Brush)_tbx.GetValue(null, null);
 
-            PropertyInfo _btn = typeof(Brushes).GetProperty(cbx_btn.SelectedItem.ToString());
-            Brush btn = (Brush)_btn.GetValue(null, null);
+            //PropertyInfo _btn = typeof(Brushes).GetProperty(cbx_btn.SelectedItem.ToString());
+            //Brush btn = (Brush)_btn.GetValue(null, null);
 
-            message.ShowMessage("TEST", "test is not real confirmation with imagination, becouse its onlu test :)",bg, tbx, btn );
+
+            Color _bg = (Color)(cbx_bg.SelectedItem as PropertyInfo).GetValue(null, null);
+            Brush bg = new SolidColorBrush(_bg);
+
+            Color _btn = (Color)(cbx_btn.SelectedItem as PropertyInfo).GetValue(null, null);
+            Brush btn = new SolidColorBrush(_btn);
+
+            Color _tbx = (Color)(cbx_tbx.SelectedItem as PropertyInfo).GetValue(null, null);
+            Brush tbx = new SolidColorBrush(_tbx);
+
+            Color _txt = (Color)(cbx_txt.SelectedItem as PropertyInfo).GetValue(null, null);
+            Brush txt = new SolidColorBrush(_txt);
+
+            message.ShowMessage("TEST", "test is not real confirmation with imagination, becouse its onlu test :)",bg, tbx, btn, txt);
         }
     }
 }
