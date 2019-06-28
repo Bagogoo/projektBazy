@@ -10,7 +10,7 @@
 
 
 
-        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="60" Margin="441,411,0,0" Stroke="Lime" VerticalAlignment="Top" Width="308"/>
+        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="60" Margin="441,411,0,0" Stroke="Lime" VerticalAlignment="Top" Width="294"/>
         <Rectangle Fill="Black" HorizontalAlignment="Left" Height="60" Margin="10,411,0,0" Stroke="Lime" VerticalAlignment="Top" Width="426"/>
         <ListBox x:Name="lbx_contener" HorizontalAlignment="Left" Height="396" Margin="10,10,0,0" VerticalAlignment="Top" Width="774" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
         <Button x:Name="btn_fillLogowanie" Content="Logowanie" HorizontalAlignment="Left" Margin="30,442,0,0" VerticalAlignment="Top" Width="75" Click="Btn_fillLogowanie_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
@@ -18,7 +18,7 @@
         <Button x:Name="btn_fillOperation" Content="Operation" HorizontalAlignment="Left" Margin="225,442,0,0" VerticalAlignment="Top" Width="75" Click="Btn_fillOperation_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
         <Button x:Name="btn_fillCategories" Content="Categories" HorizontalAlignment="Left" Margin="330,442,0,0" VerticalAlignment="Top" Width="75" Click="Btn_fillCategories_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
         <Button x:Name="btn_operationClear" Content="Clear table" HorizontalAlignment="Left" Margin="453,442,0,0" VerticalAlignment="Top" Width="143" Click="Btn_operationClear_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
-        <Button x:Name="btn_operationRemove" Content="Remove item" HorizontalAlignment="Left" Margin="601,442,0,0" VerticalAlignment="Top" Width="134" Click="Btn_operationRemove_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
+        <Button x:Name="btn_operationRemove" Content="Remove item" HorizontalAlignment="Left" Margin="601,442,0,0" VerticalAlignment="Top" Width="123" Click="Btn_operationRemove_Click" Background="Black" BorderBrush="Lime" Foreground="Lime"/>
 
 
 
@@ -173,7 +173,7 @@
                 </Style>
             </RichTextBox.Resources>
         </RichTextBox>
-        <Button x:Name="btn_close" Content="Close" HorizontalAlignment="Left" Margin="754,411,0,0" VerticalAlignment="Top" Width="36" Click="Btn_close_Click"  Background="Black" BorderBrush="Lime" Foreground="Lime" Height="60"/>
+        <Button x:Name="btn_close" Content="Close" HorizontalAlignment="Left" Margin="740,411,0,0" VerticalAlignment="Top" Width="44" Click="Btn_close_Click"  Background="Black" BorderBrush="Lime" Foreground="Lime" Height="60"/>
 
 
     </Grid>

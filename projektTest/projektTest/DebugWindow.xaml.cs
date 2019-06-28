@@ -286,16 +286,6 @@ namespace projektTest
 
         private void Btn_testmbxUser_Click(object sender, RoutedEventArgs e)
         {
-            //PropertyInfo _bg = typeof(Brushes).GetProperty(cbx_bg.SelectedItem.ToString());
-            //Brush bg = (Brush)_bg.GetValue(null, null);
-
-            //PropertyInfo _tbx = typeof(Brushes).GetProperty(cbx_tbx.SelectedItem.ToString());
-            //Brush tbx = (Brush)_tbx.GetValue(null, null);
-
-            //PropertyInfo _btn = typeof(Brushes).GetProperty(cbx_btn.SelectedItem.ToString());
-            //Brush btn = (Brush)_btn.GetValue(null, null);
-
-
             Color _bg = (Color)(cbx_bg.SelectedItem as PropertyInfo).GetValue(null, null);
             Brush bg = new SolidColorBrush(_bg);
 
