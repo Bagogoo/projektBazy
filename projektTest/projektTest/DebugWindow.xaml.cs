@@ -172,7 +172,7 @@ namespace projektTest
                     ido = (int)czytnik["ID_OPERATION"];
                     ida = (int)czytnik["ID_ACCOUNT"];
 
-                    lbx_contener.Items.Add("ID_OPERATION: " + ido.ToString() + "<>ID_ACCOUNT: " + ida.ToString() + "<>Amount: " + money.ToString() + "<>Category: " + cat + "<>Date: " + date.ToString() + "<>Name: " + name);
+                    lbx_contener.Items.Add("ID_OPERATION: " + ido.ToString() + "<>ID_ACCOUNT: " + ida.ToString() + "<>Amount: " + money.ToString() + "<>Category: " + cat + "<>Date: " + string.Format("{0:dd-MM-yyyy}", date) + "<>Name: " + name);
                 }
 
                 connection.Close();
@@ -229,43 +229,44 @@ namespace projektTest
 
         private void Btn_operationRemove_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (loaded == "Logowanie")
-                {
-                    //connection.Open();
-                    //SqlCommand sql_command_clear = new SqlCommand("DELETE FROM Logowanie WHERE ID_USER=@tmp", connection);
-                    //sql_command_clear.Parameters.Add("tmp", System.Data.SqlDbType.Int).Value = id_user;
-                    //sql_command_clear.ExecuteNonQuery();
-                    //connection.Close();
+            message.ShowMessage("Cooming soon", "This will be aviable in the near future, if you want use this pleas subscribe my youtube channel.", "message");
+            //try
+            //{
+            //    if (loaded == "Logowanie")
+            //    {
+            //        //connection.Open();
+            //        //SqlCommand sql_command_clear = new SqlCommand("DELETE FROM Logowanie WHERE ID_USER=@tmp", connection);
+            //        //sql_command_clear.Parameters.Add("tmp", System.Data.SqlDbType.Int).Value = id_user;
+            //        //sql_command_clear.ExecuteNonQuery();
+            //        //connection.Close();
 
-                    Btn_fillLogowanie_Click(sender, e);
-                }
-                else if (loaded == "Account")
-                {
-
-
-                    Btn_fillAccount_Click(sender, e);
-                }
-                else if (loaded == "Operation")
-                {
+            //        Btn_fillLogowanie_Click(sender, e);
+            //    }
+            //    else if (loaded == "Account")
+            //    {
 
 
-                    Btn_fillOperation_Click(sender, e);
-                }
-                else if (loaded == "Categories")
-                {
+            //        Btn_fillAccount_Click(sender, e);
+            //    }
+            //    else if (loaded == "Operation")
+            //    {
 
 
-                    Btn_fillCategories_Click(sender, e);
-                }
-                lbx_contener.Items.Clear();
-            }
-            catch (Exception ex)
-            {
-                message.ShowMessage("Błąd", ex.Message, "error");
-                connection.Close();
-            }
+            //        Btn_fillOperation_Click(sender, e);
+            //    }
+            //    else if (loaded == "Categories")
+            //    {
+
+
+            //        Btn_fillCategories_Click(sender, e);
+            //    }
+            //    lbx_contener.Items.Clear();
+            //}
+            //catch (Exception ex)
+            //{
+            //    message.ShowMessage("Błąd", ex.Message, "error");
+            //    connection.Close();
+            //}
         }
 
         private void Btn_testmbxMessage_Click(object sender, RoutedEventArgs e)

@@ -171,7 +171,7 @@ namespace projektTest
                 money = Double.Parse(czytnik["Amount"].ToString());
                 date = (DateTime)czytnik["Date"];
 
-                lbx_history.Items.Add(name + " " + money + " " + date + " " + category);
+                lbx_history.Items.Add(name + ": " + money + "zł, " + string.Format("{0:dd-MM-yyyy}", date) + " (" + category+")");
             }
             connection.Close();
         }
@@ -209,10 +209,12 @@ namespace projektTest
             if((bool)chkbx_childPay.IsChecked)
             {
                 cbx_childPay.IsEnabled = true;
+                cbx_category.IsEnabled = false;
             }
             else
             {
                 cbx_childPay.IsEnabled = false;
+                cbx_category.IsEnabled = true;
             }
         }
 
@@ -239,19 +241,20 @@ namespace projektTest
 
 
 
-           // try
-           // {
+            try
+            {
                 connection.Open();
 
-                    SqlCommand sql_add_command = new SqlCommand("INSERT INTO Operation(ID_ACCOUNT, Amount, Category, Date, Name) VALUES(@tmp_id, @tmp_amount, @tmp_category, @tmp_date, @tmp_name)", connection);
+                SqlCommand sql_add_command = new SqlCommand("INSERT INTO Operation(ID_ACCOUNT, Amount, Category, Date, Name) VALUES(@tmp_id, @tmp_amount, @tmp_category, @tmp_date, @tmp_name)", connection);
                 sql_add_command.Parameters.Add("tmp_id", System.Data.SqlDbType.Int).Value = id_account;
                 sql_add_command.Parameters.Add("tmp_amount", System.Data.SqlDbType.Money).Value = tmp_money;
-                sql_add_command.Parameters.Add("tmp_category", System.Data.SqlDbType.VarChar).Value = cbx_category.SelectedItem.ToString();
+                if (!(bool)chkbx_childPay.IsChecked) sql_add_command.Parameters.Add("tmp_category", System.Data.SqlDbType.VarChar).Value = cbx_category.SelectedItem.ToString();
+                else sql_add_command.Parameters.Add("tmp_category", System.Data.SqlDbType.VarChar).Value = "Kieszonkowe do "+ cbx_childPay.SelectedItem.ToString();
                 sql_add_command.Parameters.Add("tmp_date", System.Data.SqlDbType.Date).Value = cal_calendar.SelectedDate;
                 sql_add_command.Parameters.Add("tmp_name", System.Data.SqlDbType.VarChar).Value = tbx_name.Text;
                 sql_add_command.ExecuteNonQuery();
 
-            if ((bool)chkbx_childPay.IsChecked)
+                if ((bool)chkbx_childPay.IsChecked)
             {
                 int child_id = -1;
                 SqlCommand polecenie = new SqlCommand("SELECT ID_ACCOUNT FROM Account INNER JOIN Logowanie ON Account.ID_USER=Logowanie.ID_USER WHERE Logowanie.Login=@tmp_val", connection);
@@ -288,11 +291,11 @@ namespace projektTest
 
                 RefreshCreditsInfo();
                 RefreshOperationHistory();
-           // }
-           // catch
-           // {
-           //     message.ShowMessage("Błąd", "Nie udało się dodać operacji", "error");
-           // }
         }
+             catch
+             {
+                 message.ShowMessage("Błąd", "Nie udało się dodać operacji", "error");
+             }
+}
     }
 }

@@ -116,7 +116,7 @@ namespace projektTest
                 money = Double.Parse(czytnik["Amount"].ToString());
                 date = (DateTime)czytnik["Date"];
 
-                lbx_history.Items.Add(name + " " + money + " " + date + " " + category);
+                lbx_history.Items.Add(name + ": " + money + "zł, " + string.Format("{0:dd-MM-yyyy}", date) + " (" + category + ")");
             }
             connection.Close();
         }
