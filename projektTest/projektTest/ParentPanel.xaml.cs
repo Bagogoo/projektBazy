@@ -254,15 +254,15 @@ namespace projektTest
             if ((bool)chkbx_childPay.IsChecked)
             {
                 int child_id = -1;
-                SqlCommand polecenie = new SqlCommand("SELECT Account.ID_ACCOUNT FROM Account WHERE JOIN Logowanie ON Account.ID_USER=Logowanie.ID_USER WHERE Logowanie.Login=@tmp_val", connection);
+                SqlCommand polecenie = new SqlCommand("SELECT ID_ACCOUNT FROM Account INNER JOIN Logowanie ON Account.ID_USER=Logowanie.ID_USER WHERE Logowanie.Login=@tmp_val", connection);
                 polecenie.Parameters.Add("tmp_val", System.Data.SqlDbType.VarChar).Value = cbx_childPay.SelectedItem.ToString();
                 SqlDataReader czytnik = polecenie.ExecuteReader();
 
                 while (czytnik.Read())
                 {
-                    child_id = (int)czytnik["Account.ID_ACCOUNT"];
+                    child_id = (int)czytnik["ID_ACCOUNT"];
                 }
-
+                czytnik.Close();
 
 
                 SqlCommand sql_add_command_to_child = new SqlCommand("INSERT INTO Operation(ID_ACCOUNT, Amount, Category, Date, Name) VALUES(@tmp_id, @tmp_amount, @tmp_category, @tmp_date, @tmp_name)", connection);
