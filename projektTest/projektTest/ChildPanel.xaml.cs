@@ -71,26 +71,29 @@ namespace projektTest
                 haslo = czytnik["Password"].ToString();
                 rola = czytnik["Role"].ToString();
             }
-
-            this.Title = "Bajtel mode(" + id_user + "/" + id_account + "): " + login + "     |     " + haslo + "     |     " + rola;
-            connection.Close();
-
-
-            RefreshOperationHistory();
-            RefreshCreditsInfo();
-
-
-            connection.Open();
+            czytnik.Close();
+            
             //odczytywanie identyfikatora konta dla identyfikatora użytkowanika
             SqlCommand polecenie2 = new SqlCommand("SELECT ID_ACCOUNT FROM Account WHERE ID_USER=@id", connection);
             polecenie2.Parameters.Add("id", System.Data.SqlDbType.Int).Value = id_user;
             czytnik = polecenie2.ExecuteReader();
+
 
             while (czytnik.Read())
             {
                 id_account = (int)czytnik["ID_ACCOUNT"];
             }
             connection.Close();
+
+            this.Title = "Bajtel mode(" + id_user + "/" + id_account + "): " + login + "     |     " + haslo + "     |     " + rola;
+
+
+
+            RefreshOperationHistory();
+            RefreshCreditsInfo();
+
+
+
         }
 
         private void RefreshOperationHistory()
@@ -108,9 +111,9 @@ namespace projektTest
 
             while (czytnik.Read())
             {
-                name = czytnik[""].ToString();
+                name = czytnik["Name"].ToString();
                 category = czytnik["Category"].ToString();
-                money = (double)czytnik["Amount"];
+                money = Double.Parse(czytnik["Amount"].ToString());
                 date = (DateTime)czytnik["Date"];
 
                 lbx_history.Items.Add(name + " " + money + " " + date + " " + category);
@@ -129,7 +132,7 @@ namespace projektTest
 
             while (czytnik.Read())
             {
-                tmp = (double)czytnik["Amount"];
+                tmp = Double.Parse(czytnik["Amount"].ToString());
 
                 if (tmp >= 0) profit += tmp;
                 else if (tmp < 0) expenses += Math.Abs(tmp);

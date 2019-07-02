@@ -43,13 +43,6 @@ namespace projektTest
 
         private void FillBrushes()
         {
-            //foreach (PropertyInfo prop in typeof(Brushes).GetProperties())
-            //    cbx_bg.Items.Add(prop.Name);
-            //foreach (PropertyInfo prop in typeof(Brushes).GetProperties())
-            //    cbx_btn.Items.Add(prop.Name);
-            //foreach (PropertyInfo prop in typeof(Brushes).GetProperties())
-            //    cbx_tbx.Items.Add(prop.Name);
-
             cbx_bg.ItemsSource = typeof(Colors).GetProperties();
             cbx_btn.ItemsSource = typeof(Colors).GetProperties();
             cbx_tbx.ItemsSource = typeof(Colors).GetProperties();
@@ -83,18 +76,19 @@ namespace projektTest
                 connection.Close();
 
             }
-            catch
+            catch (Exception ex)
             {
-                message.ShowMessage("Błąd", "Podczas pobierania listy kategorii z serwera wystąpił nagły błąd.", "error");
+                message.ShowMessage("Błąd", ex.Message, "error");
+                connection.Close();
             }
         }
 
         private void Btn_fillAccount_Click(object sender, RoutedEventArgs e)
         {
             loaded = "Account";
-            string type;
+            string type, money;
             int idu, ida;
-            double money;
+            //double money;
             lbx_contener.Items.Clear();
             try
             {
@@ -105,20 +99,21 @@ namespace projektTest
 
                 while (czytnik.Read())
                 {
-                    type = czytnik["Tyoe"].ToString();
-                    money = (double)czytnik["Balance"];
+                    type = czytnik["Type"].ToString();
+                    money = czytnik["Balance"].ToString();
                     ida = (int)czytnik["ID_ACCOUNT"];
                     idu = (int)czytnik["ID_USER"];
 
-                    lbx_contener.Items.Add("ID_USER: " + idu.ToString() + "<>ID_ACCOUNT: " + ida.ToString() + "<>Type: " + type + "<>Balance: " + money.ToString());
+                    lbx_contener.Items.Add("ID_USER: " + idu.ToString() + "<>ID_ACCOUNT: " + ida.ToString() + "<>Type: " + type + "<>Balance: " + money);
                 }
 
                 connection.Close();
 
             }
-            catch
+            catch (Exception ex)
             {
-                message.ShowMessage("Błąd", "Podczas pobierania listy kategorii z serwera wystąpił nagły błąd.", "error");
+                message.ShowMessage("Błąd", ex.Message, "error");
+                connection.Close();
             }
         }
 
@@ -146,9 +141,10 @@ namespace projektTest
                 connection.Close();
 
             }
-            catch
+            catch (Exception ex)
             {
-                message.ShowMessage("Błąd", "Podczas pobierania listy kategorii z serwera wystąpił nagły błąd.", "error");
+                message.ShowMessage("Błąd", ex.Message, "error");
+                connection.Close();
             }
         }
 
@@ -171,10 +167,10 @@ namespace projektTest
                 {
                     name = czytnik["Name"].ToString();
                     cat = czytnik["Category"].ToString();
-                    money = (double)czytnik["Amount"];
-                    date =(DateTime)czytnik["Date"];
+                    money = Double.Parse(czytnik["Amount"].ToString());
+                    date = (DateTime)czytnik["Date"];
                     ido = (int)czytnik["ID_OPERATION"];
-                    ida = (int)czytnik["ID_USER"];
+                    ida = (int)czytnik["ID_ACCOUNT"];
 
                     lbx_contener.Items.Add("ID_OPERATION: " + ido.ToString() + "<>ID_ACCOUNT: " + ida.ToString() + "<>Amount: " + money.ToString() + "<>Category: " + cat + "<>Date: " + date.ToString() + "<>Name: " + name);
                 }
@@ -182,9 +178,10 @@ namespace projektTest
                 connection.Close();
 
             }
-            catch
+            catch (Exception ex)
             {
-                message.ShowMessage("Błąd", "Podczas pobierania listy kategorii z serwera wystąpił nagły błąd.", "error");
+                message.ShowMessage("Błąd", ex.Message, "error");
+                connection.Close();
             }
         }
 
@@ -223,9 +220,10 @@ namespace projektTest
                 lbx_contener.Items.Clear();
                 message.ShowMessage("Wykonano", "Wyczyszczono tabele " + loaded, "succes");
             }
-            catch
+            catch (Exception ex)
             {
-                message.ShowMessage("Błąd", "Nie udało się wyczyścić tabeli.", "error");
+                message.ShowMessage("Błąd", ex.Message, "error");
+                connection.Close();
             }
         }
 
@@ -263,9 +261,10 @@ namespace projektTest
                 }
                 lbx_contener.Items.Clear();
             }
-            catch
+            catch (Exception ex)
             {
-                message.ShowMessage("Błąd", "Nie udało się skasować rekordu w tabeli " + loaded, "error");
+                message.ShowMessage("Błąd", ex.Message, "error");
+                connection.Close();
             }
         }
 
@@ -341,9 +340,9 @@ namespace projektTest
                 tbx_command.Clear();
                 tbx_command.Focus();
             }
-            catch
+            catch (Exception ex)
             {
-                message.ShowMessage("Error", "Błąd podczas wysyłania polecenia.", "error");
+                message.ShowMessage("Błąd", ex.Message, "error");
                 connection.Close();
             }
         }

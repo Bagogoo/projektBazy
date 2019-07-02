@@ -26,39 +26,68 @@ namespace projektTest
             InitializeComponent();
             CenterWindowOnScreen();
         }
-        /*   public Register(SqlConnection _conn)
-           {
-               CenterWindowOnScreen();
-               InitializeComponent();
-               connection = _conn;
-           }
-           */
-        SqlConnection connection = new SqlConnection("Data Source=projektbazy.database.windows.net;Initial Catalog=BazaDziennik;User ID=projektbazy;Password=zaq1@WSX;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        public Register(SqlConnection _conn)
+        {
+            InitializeComponent();
+            CenterWindowOnScreen();
+            connection = _conn;
+
+            cbx_type.Items.Add("Portfel");
+            cbx_type.Items.Add("Konto bankowe");
+            cbx_type.SelectedIndex = 1;
+        }
+
+        SqlConnection connection;
         Message message = new Message();
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                SqlCommand polecenie = new SqlCommand("INSERT INTO Logowanie (Login,Password,Role) VALUES (@Login,@Password,@Role)", connection);
-                polecenie.Parameters.Add("@Login", System.Data.SqlDbType.VarChar).Value = tbx_username.Text;
-                polecenie.Parameters.Add("@Password", System.Data.SqlDbType.VarChar).Value = pbx_password.Password;
-                if (cbx_role.IsChecked == true) polecenie.Parameters.Add("Role", System.Data.SqlDbType.VarChar).Value = "Parent";
-                else polecenie.Parameters.Add("@Role", System.Data.SqlDbType.VarChar).Value = "Child";
-                polecenie.CommandType = CommandType.Text;
                 connection.Open();
-                polecenie.ExecuteNonQuery();
+
+                SqlCommand command_add_login = new SqlCommand("INSERT INTO Logowanie (Login,Password,Role) VALUES (@Login,@Password,@Role)", connection);
+                command_add_login.Parameters.Add("@Login", System.Data.SqlDbType.VarChar).Value = tbx_username.Text;
+                if ((bool)cbx_hidepassword.IsChecked) command_add_login.Parameters.Add("@Password", System.Data.SqlDbType.VarChar).Value = pbx_password.Password;
+                else command_add_login.Parameters.Add("@Password", System.Data.SqlDbType.VarChar).Value = tbx_password.Text;
+                if (cbx_role.IsChecked == true) command_add_login.Parameters.Add("Role", System.Data.SqlDbType.VarChar).Value = "Parent";
+                else command_add_login.Parameters.Add("@Role", System.Data.SqlDbType.VarChar).Value = "Child";
+                command_add_login.CommandType = CommandType.Text;
+                command_add_login.ExecuteNonQuery();
+
+                SqlCommand command_read_iduser = new SqlCommand("SELECT ID_USER FROM Logowanie WHERE Login=@login AND Password=@password", connection);
+                command_read_iduser.Parameters.Add("login", System.Data.SqlDbType.VarChar).Value = tbx_username.Text;
+                if ((bool)cbx_hidepassword.IsChecked) command_read_iduser.Parameters.Add("@Password", System.Data.SqlDbType.VarChar).Value = pbx_password.Password;
+                else command_read_iduser.Parameters.Add("@Password", System.Data.SqlDbType.VarChar).Value = tbx_password.Text;
+                SqlDataReader czytnik = command_read_iduser.ExecuteReader();
+
+                int new_uid = -1;
+
+                while (czytnik.Read())
+                {
+                    new_uid = (int)czytnik["ID_USER"];
+                }
+
+                czytnik.Close();
 
 
+                SqlCommand command_add_account = new SqlCommand("INSERT INTO Account(ID_USER,Type,Balance) VALUES(@tmp_idu,@tmp_type,@tmp_bala)", connection);
+                command_add_account.Parameters.Add("@tmp_idu", System.Data.SqlDbType.Int).Value = new_uid;
+                command_add_account.Parameters.Add("@tmp_type", System.Data.SqlDbType.VarChar).Value = cbx_type.SelectedItem.ToString();
+                command_add_account.Parameters.Add("@tmp_bala", System.Data.SqlDbType.Money).Value = 0;
+                command_add_account.CommandType = CommandType.Text;
+                command_add_account.ExecuteNonQuery();
+
+                connection.Close();
+                message.ShowMessage("Gratulacje", "Pomyślnie zarejestrowano", "succes");
             }
             catch
             {
                 message.ShowMessage("Błąd", "Podczas połączenia z serwerem", "error");
-            }
-            finally
-            {
-                message.ShowMessage("Gratulacje", "Pomyślnie zarejestrowano", "succes");
                 connection.Close();
             }
+
+
+
             this.Close();
         }
         private void CenterWindowOnScreen()

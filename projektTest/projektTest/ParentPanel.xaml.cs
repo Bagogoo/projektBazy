@@ -76,10 +76,8 @@ namespace projektTest
                 haslo = czytnik["Password"].ToString();
                 rola = czytnik["Role"].ToString();
             }
-            connection.Close();
-            this.Title = "Rodzic mode("+ id_user + "): " + login + "     |     " + haslo + "     |     " + rola;
+            czytnik.Close();
 
-            connection.Open();
             //odczytywanie identyfikatora konta dla identyfikatora użytkowanika
             SqlCommand polecenie2 = new SqlCommand("SELECT ID_ACCOUNT FROM Account WHERE ID_USER=@id", connection);
             polecenie2.Parameters.Add("id", System.Data.SqlDbType.Int).Value = id_user;
@@ -89,7 +87,12 @@ namespace projektTest
             {
                 id_account = (int)czytnik["ID_ACCOUNT"];
             }
+            czytnik.Close();
             connection.Close();
+
+            this.Title = "Rodzic mode("+ id_user + "/" + id_account +"): " + login + "     |     " + haslo + "     |     " + rola;
+
+           
         }
 
         private void Btn_Categories_Click(object sender, RoutedEventArgs e)
@@ -165,7 +168,7 @@ namespace projektTest
             {
                 name = czytnik["Name"].ToString();
                 category = czytnik["Category"].ToString();
-                money = (double)czytnik["Amount"];
+                money = Double.Parse(czytnik["Amount"].ToString());
                 date = (DateTime)czytnik["Date"];
 
                 lbx_history.Items.Add(name + " " + money + " " + date + " " + category);
@@ -184,7 +187,7 @@ namespace projektTest
 
             while (czytnik.Read())
             {
-                tmp = (double)czytnik["Amount"];
+                tmp = Double.Parse(czytnik["Amount"].ToString());
 
                 if (tmp >= 0) profit += tmp;
                 else if (tmp < 0) expenses += Math.Abs(tmp);
@@ -248,10 +251,10 @@ namespace projektTest
                 sql_add_command.Parameters.Add("tmp_name", System.Data.SqlDbType.VarChar).Value = tbx_name.Text;
                 sql_add_command.ExecuteNonQuery();
 
-            if ((bool)chkbx_childPay.IsEnabled)
+            if ((bool)chkbx_childPay.IsChecked)
             {
                 int child_id = -1;
-                SqlCommand polecenie = new SqlCommand("SELECT Account.ID_ACCOUNT FROM Account WHERE INNER JOIN Logowanie ON Account.ID_USER=Logowanie.ID_USER WHERE Logowanie.Login=@tmp_val", connection);
+                SqlCommand polecenie = new SqlCommand("SELECT Account.ID_ACCOUNT FROM Account WHERE JOIN Logowanie ON Account.ID_USER=Logowanie.ID_USER WHERE Logowanie.Login=@tmp_val", connection);
                 polecenie.Parameters.Add("tmp_val", System.Data.SqlDbType.VarChar).Value = cbx_childPay.SelectedItem.ToString();
                 SqlDataReader czytnik = polecenie.ExecuteReader();
 

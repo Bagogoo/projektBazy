@@ -93,10 +93,10 @@ namespace projektTest
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection connection;
-            string connectionString = "Data Source="+ connectionInfo.get_dataSource()+ ";Initial Catalog="+ connectionInfo.get_initialCatalog() + ";User ID="+ connectionInfo.get_userId() + ";Password="+ connectionInfo.get_password()+ ";Connect Timeout="+ connectionInfo.get_connectTimeout()+ ";Encrypt="+ connectionInfo.get_encrypt()+ ";TrustServerCertificate="+ connectionInfo.get_trustServerCertificate()+ ";ApplicationIntent="+ connectionInfo.get_applicationIntent()+ ";MultiSubnetFailover="+ connectionInfo.get_multiSubnetFailover()+ "";
+            string connectionString = "Data Source=" + connectionInfo.get_dataSource() + ";Initial Catalog=" + connectionInfo.get_initialCatalog() + ";User ID=" + connectionInfo.get_userId() + ";Password=" + connectionInfo.get_password() + ";Connect Timeout=" + connectionInfo.get_connectTimeout() + ";Encrypt=" + connectionInfo.get_encrypt() + ";TrustServerCertificate=" + connectionInfo.get_trustServerCertificate() + ";ApplicationIntent=" + connectionInfo.get_applicationIntent() + ";MultiSubnetFailover=" + connectionInfo.get_multiSubnetFailover() + "";
             connection = new SqlConnection(connectionString);
-            try
-            {
+            //try
+            //{
                 connection.Open();
 
                 string login = tbx_username.Text;
@@ -138,25 +138,25 @@ namespace projektTest
                     ClearFields();
                 }
                 else
-                {
-                    if (login == "Kujo" && password == "Jotaro") btn_login.Content = "Nani?!";
-                    if (login == "marvin")
-                    {
-                        DebugWindow debwin = new DebugWindow(connection);
-                        this.Hide();
-                        debwin.ShowDialog();
-                        this.Show();
-                        ClearFields();
-                    }
-                    else message.ShowMessage("Nie udało się zalogować", "Podano niepoprawny login lub hasło.", "error");
-                }
-                connection.Close();
-            }
-            catch
             {
-                message.ShowMessage("Nie udało się połączyć", "Nie można nawiązać połączenia z bazą danych.", "error");
+                if (login == "Kujo" && password == "Jotaro") btn_login.Content = "Nani?!";
+                if (login == "marvin")
+                {
+                    DebugWindow debwin = new DebugWindow(connection);
+                    this.Hide();
+                    debwin.ShowDialog();
+                    this.Show();
+                    ClearFields();
+                }
+                else message.ShowMessage("Nie udało się zalogować", "Podano niepoprawny login lub hasło.", "error");
             }
-        }
+            connection.Close();
+        //}
+        //    catch
+        //    {
+        //        message.ShowMessage("Nie udało się połączyć", "Nie można nawiązać połączenia z bazą danych.", "error");
+        //    }
+}
 
         private void KeyDown_on_tbx(object sender, KeyEventArgs e)
         {
@@ -205,7 +205,11 @@ namespace projektTest
 
         private void btn_register_Click(object sender, RoutedEventArgs e)
         {
-            Register window = new Register();
+            SqlConnection connection;
+            string connectionString = "Data Source=" + connectionInfo.get_dataSource() + ";Initial Catalog=" + connectionInfo.get_initialCatalog() + ";User ID=" + connectionInfo.get_userId() + ";Password=" + connectionInfo.get_password() + ";Connect Timeout=" + connectionInfo.get_connectTimeout() + ";Encrypt=" + connectionInfo.get_encrypt() + ";TrustServerCertificate=" + connectionInfo.get_trustServerCertificate() + ";ApplicationIntent=" + connectionInfo.get_applicationIntent() + ";MultiSubnetFailover=" + connectionInfo.get_multiSubnetFailover() + "";
+            connection = new SqlConnection(connectionString);
+
+            Register window = new Register(connection);
             this.Hide();
             window.ShowDialog();
             this.Show();
