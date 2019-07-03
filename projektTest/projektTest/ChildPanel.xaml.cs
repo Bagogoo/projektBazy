@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using System.Xml.Serialization;
+using System.Windows.Markup;
 
 namespace projektTest
 {
@@ -27,9 +28,10 @@ namespace projektTest
             InitializeComponent();
             CenterWindowOnScreen();
             FillCategories();
+            SetLang();
         }
 
-        public ChildPanel(int _id, SqlConnection _conn)
+        public ChildPanel(int _id, SqlConnection _conn, string _lang)
         {
             InitializeComponent();
             CenterWindowOnScreen();
@@ -37,6 +39,8 @@ namespace projektTest
             connection = _conn;
             Initialization();
             FillCategories();
+            ui_lang = _lang;
+            SetLang();
         }
 
         //centrowanie okna na ekranie
@@ -54,7 +58,7 @@ namespace projektTest
         int id_account = 0;
         SqlConnection connection;
         Message message = new Message();
-
+        string ui_lang = "UNSET";
         private void Initialization()
         {
             cal_calendar.SelectedDate = DateTime.Now.Date;
@@ -147,6 +151,74 @@ namespace projektTest
             lbl_revenues.Content = profit;
 
             connection.Close();
+        }
+
+        private void SetLang()
+        {
+            if (ui_lang == "PL")
+            {
+                lbl_history.Content = "Historia operacji";
+                lbl_newpay.Content = "Nowa operacja";
+                lbl_name.Content = "Nazwa operacji";
+                lbl_price.Content = "Kwota";
+                lbl_category.Content = "Kategoria";
+                btn_addTransaction.Content = "Zatwierdź";
+                rbtn_payin.Content = "Przychód";
+                rbtn_payout.Content = "Wydatek";
+                lbl_expensesinfo.Content = "Wydatki:";
+                lbl_revenuesinfo.Content = "Przychody";
+                lbl_saldoinfo.Content = "Saldo";
+                cal_calendar.Language = XmlLanguage.GetLanguage("pl-PL");
+            }
+            else if (ui_lang == "GB")
+            {
+                lbl_history.Content = "Historia operacji";
+                lbl_newpay.Content = "Nowa operacja";
+                lbl_name.Content = "Nazwa operacji";
+                lbl_price.Content = "Kwota";
+                lbl_category.Content = "Kategoria";
+                chkbx_childPay.Content = "Przelew do potomka";
+                btn_addTransaction.Content = "Zatwierdź";
+                rbtn_payin.Content = "Przychód";
+                rbtn_payout.Content = "Wydatek";
+                lbl_expensesinfo.Content = "Wydatki:";
+                lbl_revenuesinfo.Content = "Przychody";
+                lbl_saldoinfo.Content = "Saldo";
+                cal_calendar.Language = XmlLanguage.GetLanguage("en-US");
+            }
+            else if (ui_lang == "DE")
+            {
+                lbl_history.Content = "Historia operacji";
+                lbl_newpay.Content = "Nowa operacja";
+                lbl_name.Content = "Nazwa operacji";
+                lbl_price.Content = "Kwota";
+                lbl_category.Content = "Kategoria";
+                chkbx_childPay.Content = "Przelew do potomka";
+                btn_addTransaction.Content = "Zatwierdź";
+                rbtn_payin.Content = "Przychód";
+                rbtn_payout.Content = "Wydatek";
+                lbl_expensesinfo.Content = "Wydatki:";
+                lbl_revenuesinfo.Content = "Przychody";
+                lbl_saldoinfo.Content = "Saldo";
+                cal_calendar.Language = XmlLanguage.GetLanguage("de-DE");
+            }
+            else //na angola(w razie błędów będzie podstawowy)
+            {
+                lbl_history.Content = "Historia operacji";
+                lbl_newpay.Content = "Nowa operacja";
+                lbl_name.Content = "Nazwa operacji";
+                lbl_price.Content = "Kwota";
+                lbl_category.Content = "Kategoria";
+                chkbx_childPay.Content = "Przelew do potomka";
+                btn_addTransaction.Content = "Zatwierdź";
+                rbtn_payin.Content = "Przychód";
+                rbtn_payout.Content = "Wydatek";
+                lbl_expensesinfo.Content = "Wydatki:";
+                lbl_revenuesinfo.Content = "Przychody";
+                lbl_saldoinfo.Content = "Saldo";
+                cal_calendar.Language = XmlLanguage.GetLanguage("en-US");
+            }
+
         }
 
         private void btn_addPayment_click(object sender, RoutedEventArgs e)

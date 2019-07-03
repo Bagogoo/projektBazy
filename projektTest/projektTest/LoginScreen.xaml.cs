@@ -29,6 +29,8 @@ namespace projektTest
             CenterWindowOnScreen();
             ReadConfiguration();
             tbx_username.Focus();
+            ui_lang = "PL";
+            rbtn_langPL.IsChecked = true;
         }
 
         //centrowanie okna na ekranie
@@ -44,6 +46,7 @@ namespace projektTest
 
         ConnectionSet connectionInfo = new ConnectionSet();
         Message message = new Message();
+        string ui_lang = "";
 
         private void SaveConfiguration()
         {
@@ -123,7 +126,7 @@ namespace projektTest
 
                 if (role == "Parent")
                 {
-                    ParentPanel controlpanel = new ParentPanel(identyficator, connection);
+                    ParentPanel controlpanel = new ParentPanel(identyficator, connection, ui_lang);
                     this.Hide();
                     controlpanel.ShowDialog();
                     this.Show();
@@ -221,6 +224,48 @@ namespace projektTest
             tbx_password.Clear();
             pbx_password.Clear();
             tbx_username.Focus();
+        }
+
+        private void Rbtn_lang_Checked(object sender, RoutedEventArgs e)
+        {
+            if ((bool)rbtn_langPL.IsChecked)
+            {
+                ui_lang = "PL";
+                lbl_signin.Content = "Logowanie";
+                lbl_username.Content = "Nazwa użytkownika";
+                lbl_password.Content = "Hasło";
+                cbx_hidepassword.Content = "Ukryj hasło";
+                btn_login.Content = "Zaloguj";
+                btn_settings.Content = "Ustawienia";
+                btn_register.Content = "Zajerestruj";
+            }
+            else if ((bool)rbtn_langDE.IsChecked)
+            {
+                ui_lang = "DE";
+                lbl_signin.Content = "Logowanie";
+                lbl_username.Content = "Nazwa użytkownika";
+                lbl_password.Content = "Hasło";
+                cbx_hidepassword.Content = "Ukryj hasło";
+                btn_login.Content = "Zaloguj";
+                btn_settings.Content = "Ustawienia";
+                btn_register.Content = "Zajerestruj";
+            }
+            else if ((bool)rbtn_langGB.IsChecked)
+            {
+                ui_lang = "GB";
+                lbl_signin.Content = "Sign in";
+                lbl_username.Content = "Username";
+                lbl_password.Content = "Password";
+                cbx_hidepassword.Content = "Hide password";
+                btn_login.Content = "Sign in";
+                btn_settings.Content = "Settings";
+                btn_register.Content = "Sign up";
+            }
+            else
+            {
+                ui_lang = "UNSET";
+            }
+
         }
     }
 }
