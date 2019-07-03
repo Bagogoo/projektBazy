@@ -25,20 +25,72 @@ namespace projektTest
         {
             InitializeComponent();
             CenterWindowOnScreen();
+            SetLang();
         }
-        public Register(SqlConnection _conn)
+        public Register(SqlConnection _conn, string _lang)
         {
             InitializeComponent();
             CenterWindowOnScreen();
             connection = _conn;
 
-            cbx_type.Items.Add("Portfel");
-            cbx_type.Items.Add("Konto bankowe");
+            cbx_type.Items.Add("Wallet");
+            cbx_type.Items.Add("Bank account");
             cbx_type.SelectedIndex = 1;
+            ui_lang = _lang;
+            SetLang();
         }
 
         SqlConnection connection;
         Message message = new Message();
+        string ui_lang = "NOSET";
+
+
+
+        private void SetLang()
+        {
+            if (ui_lang == "PL")
+            {
+                lbl_signUp.Content = "Rejestracja";
+                lbl_username.Content = "Nazwa użytkownika";
+                lbl_password.Content = "Hasło";
+                cbx_hidepassword.Content = "Ukryj hasło";
+                cbx_role.Content = "Jestem rodzicem";
+                btn_login.Content = "Zarejestruj";
+                lbl_type.Content = "Typ konta";
+            }
+            else if (ui_lang == "GB")
+            {
+                lbl_signUp.Content = "Sign up";
+                lbl_username.Content = "Username";
+                lbl_password.Content = "Password";
+                cbx_hidepassword.Content = "Hide password";
+                cbx_role.Content = "I'm parent";
+                btn_login.Content = "Sign up";
+                lbl_type.Content = "Account type";
+            }
+            else if (ui_lang == "DE")
+            {
+                lbl_signUp.Content = "Anmeldung";
+                lbl_username.Content = "Benutzername";
+                lbl_password.Content = "Kennwort";
+                cbx_hidepassword.Content = "Passwort verstecken";
+                cbx_role.Content = "Ich bin ein Elternteil";
+                btn_login.Content = "Zarejestruj";
+                lbl_type.Content = "Kontotyp";
+            }
+            else 
+            {
+                lbl_signUp.Content = "Sign up";
+                lbl_username.Content = "Username";
+                lbl_password.Content = "Password";
+                cbx_hidepassword.Content = "Hide password";
+                cbx_role.Content = "I'm parent";
+                btn_login.Content = "Sign up";
+                lbl_type.Content = "Account type";
+            }
+
+        }
+
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             try

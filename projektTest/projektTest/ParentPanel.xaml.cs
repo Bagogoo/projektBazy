@@ -119,50 +119,50 @@ namespace projektTest
             }
             else if (ui_lang == "GB")
             {
-                lbl_history.Content = "Historia operacji";
-                lbl_newpay.Content = "Nowa operacja";
-                lbl_name.Content = "Nazwa operacji";
-                lbl_price.Content = "Kwota";
-                lbl_category.Content = "Kategoria";
-                chkbx_childPay.Content = "Przelew do potomka";
-                btn_addTransaction.Content = "Zatwierdź";
-                rbtn_payin.Content = "Przychód";
-                rbtn_payout.Content = "Wydatek";
-                lbl_expensesinfo.Content = "Wydatki:";
-                lbl_revenuesinfo.Content = "Przychody";
-                lbl_saldoinfo.Content = "Saldo";
+                lbl_history.Content = "Operation history";
+                lbl_newpay.Content = "New operation";
+                lbl_name.Content = "Operation name";
+                lbl_price.Content = "Amount";
+                lbl_category.Content = "Category";
+                btn_addTransaction.Content = "Submit";
+                lbl_expensesinfo.Content = "Expenses:";
+                lbl_revenuesinfo.Content = "Revenues:";
+                lbl_saldoinfo.Content = "Balance:";
+                chkbx_childPay.Content = "Transfer to the child";
+                rbtn_payin.Content = "Income";
+                rbtn_payout.Content = "Expenditure";
                 cal_calendar.Language = XmlLanguage.GetLanguage("en-US");
             }
             else if (ui_lang == "DE")
             {
-                lbl_history.Content = "Historia operacji";
-                lbl_newpay.Content = "Nowa operacja";
-                lbl_name.Content = "Nazwa operacji";
-                lbl_price.Content = "Kwota";
-                lbl_category.Content = "Kategoria";
-                chkbx_childPay.Content = "Przelew do potomka";
-                btn_addTransaction.Content = "Zatwierdź";
-                rbtn_payin.Content = "Przychód";
-                rbtn_payout.Content = "Wydatek";
-                lbl_expensesinfo.Content = "Wydatki:";
-                lbl_revenuesinfo.Content = "Przychody";
-                lbl_saldoinfo.Content = "Saldo";
+                lbl_history.Content = "Betriebsverlauf";
+                lbl_newpay.Content = "Neuer Betrieb";
+                lbl_name.Content = "Der Name der Operation";
+                lbl_price.Content = "Betrag";
+                lbl_category.Content = "Kategorie";
+                btn_addTransaction.Content = "Einreichen";
+                lbl_expensesinfo.Content = "Kosten:";
+                lbl_revenuesinfo.Content = "Einnahmen:";
+                lbl_saldoinfo.Content = "Balance:";
+                chkbx_childPay.Content = "Übertragung auf das Kind";
+                rbtn_payin.Content = "Einkommen";
+                rbtn_payout.Content = "Ausgabe";
                 cal_calendar.Language = XmlLanguage.GetLanguage("de-DE");
             }
-            else //na angola(w razie błędów będzie podstawowy)
+            else 
             {
-                lbl_history.Content = "Historia operacji";
-                lbl_newpay.Content = "Nowa operacja";
-                lbl_name.Content = "Nazwa operacji";
-                lbl_price.Content = "Kwota";
-                lbl_category.Content = "Kategoria";
-                chkbx_childPay.Content = "Przelew do potomka";
-                btn_addTransaction.Content = "Zatwierdź";
-                rbtn_payin.Content = "Przychód";
-                rbtn_payout.Content = "Wydatek";
-                lbl_expensesinfo.Content = "Wydatki:";
-                lbl_revenuesinfo.Content = "Przychody";
-                lbl_saldoinfo.Content = "Saldo";
+                lbl_history.Content = "Operation history";
+                lbl_newpay.Content = "New operation";
+                lbl_name.Content = "Operation name";
+                lbl_price.Content = "Amount";
+                lbl_category.Content = "Category";
+                btn_addTransaction.Content = "Submit";
+                lbl_expensesinfo.Content = "Expenses:";
+                lbl_revenuesinfo.Content = "Revenues:";
+                lbl_saldoinfo.Content = "Balance:";
+                chkbx_childPay.Content = "Transfer to the child";
+                rbtn_payin.Content = "Income";
+                rbtn_payout.Content = "Expenditure";
                 cal_calendar.Language = XmlLanguage.GetLanguage("en-US");
             }
 

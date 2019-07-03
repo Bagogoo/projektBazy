@@ -98,8 +98,8 @@ namespace projektTest
             SqlConnection connection;
             string connectionString = "Data Source=" + connectionInfo.get_dataSource() + ";Initial Catalog=" + connectionInfo.get_initialCatalog() + ";User ID=" + connectionInfo.get_userId() + ";Password=" + connectionInfo.get_password() + ";Connect Timeout=" + connectionInfo.get_connectTimeout() + ";Encrypt=" + connectionInfo.get_encrypt() + ";TrustServerCertificate=" + connectionInfo.get_trustServerCertificate() + ";ApplicationIntent=" + connectionInfo.get_applicationIntent() + ";MultiSubnetFailover=" + connectionInfo.get_multiSubnetFailover() + "";
             connection = new SqlConnection(connectionString);
-            //try
-            //{
+            try
+            {
                 connection.Open();
 
                 string login = tbx_username.Text;
@@ -134,7 +134,7 @@ namespace projektTest
                 }
                 else if (role == "Child")
                 {
-                    ChildPanel controlpanel = new ChildPanel(identyficator, connection);
+                    ChildPanel controlpanel = new ChildPanel(identyficator, connection, ui_lang);
                     this.Hide();
                     controlpanel.ShowDialog();
                     this.Show();
@@ -154,11 +154,11 @@ namespace projektTest
                 else message.ShowMessage("Nie udało się zalogować", "Podano niepoprawny login lub hasło.", "error");
             }
             connection.Close();
-        //}
-        //    catch
-        //    {
-        //        message.ShowMessage("Nie udało się połączyć", "Nie można nawiązać połączenia z bazą danych.", "error");
-        //    }
+        }
+            catch
+            {
+                message.ShowMessage("Nie udało się połączyć", "Nie można nawiązać połączenia z bazą danych.", "error");
+            }
 }
 
         private void KeyDown_on_tbx(object sender, KeyEventArgs e)
@@ -212,7 +212,7 @@ namespace projektTest
             string connectionString = "Data Source=" + connectionInfo.get_dataSource() + ";Initial Catalog=" + connectionInfo.get_initialCatalog() + ";User ID=" + connectionInfo.get_userId() + ";Password=" + connectionInfo.get_password() + ";Connect Timeout=" + connectionInfo.get_connectTimeout() + ";Encrypt=" + connectionInfo.get_encrypt() + ";TrustServerCertificate=" + connectionInfo.get_trustServerCertificate() + ";ApplicationIntent=" + connectionInfo.get_applicationIntent() + ";MultiSubnetFailover=" + connectionInfo.get_multiSubnetFailover() + "";
             connection = new SqlConnection(connectionString);
 
-            Register window = new Register(connection);
+            Register window = new Register(connection, ui_lang);
             this.Hide();
             window.ShowDialog();
             this.Show();
@@ -242,13 +242,13 @@ namespace projektTest
             else if ((bool)rbtn_langDE.IsChecked)
             {
                 ui_lang = "DE";
-                lbl_signin.Content = "Logowanie";
-                lbl_username.Content = "Nazwa użytkownika";
-                lbl_password.Content = "Hasło";
-                cbx_hidepassword.Content = "Ukryj hasło";
-                btn_login.Content = "Zaloguj";
-                btn_settings.Content = "Ustawienia";
-                btn_register.Content = "Zajerestruj";
+                lbl_signin.Content = "Einloggen";
+                lbl_username.Content = "Benutzername";
+                lbl_password.Content = "Kennwort";
+                cbx_hidepassword.Content = "Passwort verstecken";
+                btn_login.Content = "Einloggen";
+                btn_settings.Content = "Einstellungen";
+                btn_register.Content = "Registrieren";
             }
             else if ((bool)rbtn_langGB.IsChecked)
             {

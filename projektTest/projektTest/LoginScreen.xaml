@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:projektTest"
         mc:Ignorable="d"
-        Title="Sign in" Height="380.488" Width="300" FontSize="15" Background="#336666" ResizeMode="NoResize">
+        Title="Sign in" Height="337.488" Width="300" FontSize="15" Background="#336666" ResizeMode="NoResize">
     <StackPanel Margin="20">
         <Label x:Name="lbl_signin" Content="Sign in" Foreground="White" FontSize="25" HorizontalAlignment="Center"  VerticalAlignment="Top" />
         <Separator></Separator>
@@ -19,9 +19,15 @@
         <Button Name="btn_login"  BorderBrush="White" Content="Sign in" Margin="70 10"   Background="#2F4F4F" FontSize="16" Foreground="White" Click="BtnLogin_Click"/>
         <Button x:Name="btn_register" Content="Sign up" Margin="0,-25,189,10"  BorderBrush="White"  Background="#2F4F4F" FontSize="8" Foreground="White" Click="btn_register_Click"/>
         <Button x:Name="btn_settings" Content="Settings" Margin="0,-25,0,10"  BorderBrush="White"  Background="#2F4F4F" FontSize="8" Foreground="White" HorizontalAlignment="Right" Width="65" Click="Btn_settings_Click"/>
-        <RadioButton x:Name="rbtn_langPL" Content="PL" Checked="Rbtn_lang_Checked" Margin="0,0,199,0"/>
-        <RadioButton x:Name="rbtn_langGB" Content="GB" Checked="Rbtn_lang_Checked" HorizontalAlignment="Left" Width="65"/>
-        <RadioButton x:Name="rbtn_langDE" Content="DE" Checked="Rbtn_lang_Checked"/>
+        <Grid Height="30">
+            <RadioButton x:Name="rbtn_langPL" Content="" Checked="Rbtn_lang_Checked" Margin="122,0,88,0"/>
+            <RadioButton x:Name="rbtn_langGB" Content="" Checked="Rbtn_lang_Checked" Margin="0,0,189,0"/>
+            <RadioButton x:Name="rbtn_langDE" Content="" Checked="Rbtn_lang_Checked" Margin="230,0,0,0"/>
+            <Image HorizontalAlignment="Left" Height="10" Width="20" Margin="230,14,0,0" VerticalAlignment="Top" Source="images/de.png" />
+            <Image HorizontalAlignment="Left" Height="10" Width="20" Margin="0,14,0,0" VerticalAlignment="Top" Source="images/gb.png" />
+            <Image HorizontalAlignment="Left" Height="10" Width="20" Margin="122,14,0,0" VerticalAlignment="Top" Source="images/pl.png" />
+        </Grid>
+
 
     </StackPanel>
 
