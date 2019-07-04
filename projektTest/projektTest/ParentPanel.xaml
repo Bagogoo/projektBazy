@@ -30,5 +30,6 @@
         <RadioButton IsChecked="True" x:Name="rbtn_payout" Content="Odchód" HorizontalAlignment="Left" Margin="700,126,0,0" VerticalAlignment="Top" Background="#FF428383" BorderBrush="White" Foreground="White"/>
         <Label x:Name="lbl_newpay" Foreground="White" Content="Nowy wydatek" HorizontalAlignment="Left" Margin="499,3,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btn_Categories" Content="+/-" HorizontalAlignment="Left" Margin="559,172,0,0" VerticalAlignment="Top" Width="21" Background="DarkSlateGray" Foreground="White" BorderBrush="White" Click="Btn_Categories_Click" Height="22"/>
+        <Button x:Name="btn_raport" Content="Generuj raport" HorizontalAlignment="Left" Margin="318,429,0,0" VerticalAlignment="Top" Width="263" Click="btn_raport_click" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
     </Grid>
 </Window>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -94,7 +95,7 @@ namespace projektTest
             czytnik.Close();
             connection.Close();
 
-            this.Title = "Rodzic mode("+ id_user + "/" + id_account +"): " + login + "     |     " + haslo + "     |     " + rola;
+            
 
            
         }
@@ -103,6 +104,8 @@ namespace projektTest
         {
             if(ui_lang == "PL")
             {
+                this.Title = "Panel rodzica";
+                btn_raport.Content = "Generuj raport";
                 lbl_history.Content = "Historia operacji";
                 lbl_newpay.Content = "Nowa operacja";
                 lbl_name.Content = "Nazwa operacji";
@@ -119,6 +122,8 @@ namespace projektTest
             }
             else if (ui_lang == "GB")
             {
+                this.Title = "Parent panel";
+                btn_raport.Content = "Generate report";
                 lbl_history.Content = "Operation history";
                 lbl_newpay.Content = "New operation";
                 lbl_name.Content = "Operation name";
@@ -135,6 +140,8 @@ namespace projektTest
             }
             else if (ui_lang == "DE")
             {
+                this.Title = "Parent panel";
+                btn_raport.Content = "Einen Bericht erstellen";
                 lbl_history.Content = "Betriebsverlauf";
                 lbl_newpay.Content = "Neuer Betrieb";
                 lbl_name.Content = "Der Name der Operation";
@@ -277,6 +284,40 @@ namespace projektTest
             connection.Close();
         }
 
+        private void btn_raport_click(object sender, RoutedEventArgs e)
+        {
+            string name = "", category = "";
+            DateTime date = Convert.ToDateTime("0/0/0000");
+            double money = 0;
+                try
+                {
+                    FileStream fs = new FileStream("Raport.txt", FileMode.OpenOrCreate);
+                    StreamWriter plik = new StreamWriter(fs);
+                    connection.Open();
+                    SqlCommand polecenie = new SqlCommand("SELECT Name, Category, Amount, Date FROM Operation WHERE ID_ACCOUNT=@id", connection);
+                    polecenie.Parameters.Add("id", System.Data.SqlDbType.Int).Value = id_account;
+                    SqlDataReader czytnik = polecenie.ExecuteReader();
+
+                    while (czytnik.Read())
+                    {
+                        name = czytnik["Name"].ToString();
+                        category = czytnik["Category"].ToString();
+                        money = Double.Parse(czytnik["Amount"].ToString());
+                        date = (DateTime)czytnik["Date"];
+
+
+                    }
+                    connection.Close();
+                    plik.WriteLine("Raport");
+                    plik.WriteLine(name + ": " + money + "zł, " + string.Format("{0:dd-MM-yyyy}", date) + " (" + category + ")");
+                    plik.Close();
+                }
+                catch
+                {
+                    message.ShowMessage("Błąd", "Nie udało wygenerować się raportu.", "error");
+                }
+            }
+
         private void chkbx_childPay_Checked(object sender, RoutedEventArgs e)
         {
             if((bool)chkbx_childPay.IsChecked)
@@ -369,6 +410,7 @@ namespace projektTest
              {
                  message.ShowMessage("Błąd", "Nie udało się dodać operacji", "error");
              }
+
 }
     }
 }

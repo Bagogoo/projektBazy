@@ -8,7 +8,7 @@
         Title="ChildPanel" Height="600" Width="800" Background="#336666" ResizeMode="NoResize">
     <Grid>
         <Border BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left" Height="285" Margin="307,29,0,0" VerticalAlignment="Top" Width="477" Background="#FF428383"/>
-        <ListBox FontSize="13" x:Name="lbx_history" HorizontalAlignment="Left" Height="532" Margin="10,29,0,0" VerticalAlignment="Top" Width="289" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
+        <ListBox FontSize="13" x:Name="lbx_history" HorizontalAlignment="Left" Height="532" Margin="10,29,0,0" VerticalAlignment="Top" Width="289" Background="DarkSlateGray" BorderBrush="White" Foreground="White" SelectionChanged="Lbx_history_SelectionChanged"/>
         <Label x:Name="lbl_history" Content="Historia operacji" HorizontalAlignment="Left" Margin="97,3,0,0" VerticalAlignment="Top" Foreground="White"/>
         <TextBox x:Name="tbx_name" Background="#2F4F4F" FontSize="16" Foreground="White" BorderBrush="White" Height="23" Margin="317,58,21,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Label x:Name="lbl_name" Content="Nazwa" HorizontalAlignment="Left" Margin="307,29,0,0" VerticalAlignment="Top" Foreground="White"/>
@@ -26,6 +26,7 @@
         <Label x:Name="lbl_category" Content="Kategoria" HorizontalAlignment="Left" Margin="307,138,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="lbl_newpay" Content="Nowy wydatek" HorizontalAlignment="Left" Margin="505,3,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Button x:Name="btn_addCategory" Content="+/-" HorizontalAlignment="Left" Margin="552,167,0,0" VerticalAlignment="Top" Width="33" Background="DarkSlateGray" BorderBrush="White" Foreground="White" Height="22" Click="Btn_addCategory_Click"/>
+        <Button x:Name="btn_raport" Content="Generuj raport" HorizontalAlignment="Left" Margin="317,437,0,0" VerticalAlignment="Top" Width="263" Click="btn_raport_click" Background="DarkSlateGray" BorderBrush="White" Foreground="White"/>
 
 
     </Grid>
